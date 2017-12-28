@@ -1,0 +1,283 @@
+$img: "/static/images/shopping-mail/";
+
+.goods-details {
+  width: 100%;
+  padding-bottom: 1rem;
+  background-color: #fff;
+}
+
+.goods-details header {
+  width: 100%;
+  height: 0.97rem;
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid #b2b2b2;
+  position: relative;
+  .return {
+    float: left;
+    width: 0.25rem;
+    height: 100%;
+    background: url($img + "return.png") no-repeat center/100% auto;
+  }
+  p {
+    height: 0.34rem;
+    width: 2rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #333434;
+    line-height: 0.34rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.goods-details .goods-title {
+  width: 100%;
+  padding: 0.2rem 0.3rem;
+  img.pic {
+    float: left;
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .pic-right {
+    float: left;
+    margin-left: 0.2rem;
+    padding-top: 0.1rem;
+    p.name-store {
+      font-size: 0.36rem;
+      color: #333434;
+      line-height: 0.36rem;
+      font-weight: bold;
+    }
+    p.name-goods {
+      margin-top: 0.1rem;
+      font-size: 0.3rem;
+      color: #333434;
+      line-height: 0.3rem;
+    }
+  }
+}
+
+.goods-details .goods-baseInfo {
+  width: 100%;
+  .pics {
+    width: 100%;
+    padding: 0 0.3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li.item {
+      margin-bottom: .15rem;
+      width: 2.2rem;
+      height: 2rem;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .goodsAddress-goodsSold {
+    width: 100%;
+    padding-left: 0.3rem;
+    span {
+      float: left;
+      font-size: 0.28rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    span.goods-sold {
+      margin-left: 0.5rem;
+    }
+  }
+  .goods-price {
+    width: 100%;
+    padding-left: 0.3rem;
+    margin-top: 0.2rem;
+    span {
+      font-size: 0.36rem;
+      color: #f53b59;
+      line-height: 0.36rem;
+    }
+  }
+  .goods-others {
+    width: 100%;
+    height: 0.5rem;
+    margin-top: 0.2rem;
+    background-color: #efefef;
+    padding: 0 0.44rem;
+    display: flex;
+    justify-content: space-between;
+    li.item {
+      height: 0.5rem;
+      display: flex;
+      align-items: center;
+      .icon {
+        width: 0.4rem;
+        height: 0.4rem;
+      }
+      span {
+        margin-left: 0.16rem;
+        font-size: 0.24rem;
+        color: #878787;
+        line-height: 0.24rem;
+      }
+    }
+    li.item:nth-child(1) .icon {
+      background: url($img + "refunds.png") no-repeat center/100%;
+    }
+    li.item:nth-child(2) .icon {
+      background: url($img + "alipay.png") no-repeat center/100%;
+    }
+    li.item:nth-child(3) .icon {
+      background: url($img + "wechat.png") no-repeat center/100%;
+    }
+    li.item:nth-child(4) .icon {
+      background: url($img + "free_postage.png") no-repeat center/100%;
+    }
+  }
+  .size-select {
+    width: 100%;
+    height: 1.1rem;
+    padding: 0 0.6rem 0 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      font-size: 0.28rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    .icon {
+      width: 0.4rem;
+      height: 0.78rem;
+      background: url($img + "come_in.png") no-repeat center/ 0.22rem 0.4rem;
+    }
+  }
+}
+
+.goods-details .goods-comments {
+  width: 100%;
+  .title-text {
+    width: 100%;
+    padding: 0.1rem 0 0.1rem 0.3rem;
+    background-color: #efefef;
+    font-size: 0.28rem;
+    color: #333434;
+    line-height: 0.28rem;
+  }
+  .content {
+    width: 100%;
+    padding-left: 0.3rem;
+  }
+  .content li.item {
+    width: 100%;
+    padding: 0.15rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    img.pic {
+      display: block;
+      float: left;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 0.1rem;
+    }
+    .pic-right {
+      float: left;
+      margin-left: 0.12rem;
+      padding-top: 0.1rem;
+      p.name {
+        font-size: 0.28rem;
+        color: #1d1d1d;
+        line-height: 0.28rem;
+      }
+      p.text-content {
+        margin-top: 0.08rem;
+        font-size: 0.24rem;
+        color: #9b9b9b;
+        line-height: 0.24rem;
+      }
+    }
+  }
+  .more{
+    width: 100%;
+    padding: 0.1rem 0;
+    background-color: #e5e5e5;
+    font-size: 0.28rem;
+    color: #333434;
+    line-height: 0.28rem;
+    text-align: center;
+  }
+}
+
+.goods-details footer {
+  width: 100%;
+  height: 0.98rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0 0.5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .collect {
+    width: 0.5rem;
+    .icon {
+      width: 100%;
+      height: 0.36rem;
+      margin-bottom: 0.1rem;
+      background: url($img + "collect.png") no-repeat center/auto 100%;
+      &.active{
+        background: url($img + "collected.png") no-repeat center/auto 100%;
+      }
+    }
+    p {
+      text-align: center;
+      font-size: 0.22rem;
+      color: #333;
+      line-height: 0.22rem;
+    }
+  }
+  .customer-server {
+    width: 0.5rem;
+    .icon {
+      width: 100%;
+      height: 0.36rem;
+      margin-bottom: 0.1rem;
+      background: url($img + "server.png") no-repeat center/auto 100%;
+    }
+    p {
+      text-align: center;
+      font-size: 0.22rem;
+      color: #333;
+      line-height: 0.22rem;
+    }
+  }
+  .add-to {
+    width: 2rem;
+    height: 0.68rem;
+    margin-left: 0.2rem;
+    border-radius: 0.34rem;
+    border: 1px solid #ffbf0d;
+    font-size: 0.32rem;
+    color: #ffbf0d;
+    text-align: center;
+    line-height: 0.68rem;
+  }
+  .purchase {
+    display: block;
+    width: 2rem;
+    height: 0.68rem;
+    border-radius: 0.34rem;
+    background-color: #ffbf0d;
+    font-size: 0.32rem;
+    color: #fff;
+    text-align: center;
+    line-height: 0.68rem;
+  }
+}
+

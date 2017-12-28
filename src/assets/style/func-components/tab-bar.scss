@@ -1,0 +1,73 @@
+$img: "/static/images/others/";
+
+.tab-bar {
+  width: 100%;
+  height: 0.98rem;
+  padding: 0 0.52rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  .item {
+    width: 0.5rem;
+    height: 100%;
+    padding-top: 0.1rem;
+    position: relative;
+    .icon {
+      width: 100%;
+      height: 0.46rem;
+      margin-bottom: 0.1rem;
+    }
+    p {
+      width: 100%;
+      text-align: center;
+      font-size: 0.2rem;
+      color: #323232;
+    }
+    .unread {
+      width: 0.36rem;
+      height: 0.36rem;
+      border-radius: 50%;
+      background-color: #ff3b30;
+      font-size: 0.24rem;
+      color: #fff;
+      text-align: center;
+      line-height: 0.36rem;
+      position: absolute;
+      top: 0;
+      right: -0.28rem;
+    }
+  }
+  .item:nth-child(1) .icon {
+    background: url($img + "home_page.png") no-repeat center/100%;
+  }
+  .item.active:nth-child(1) .icon {
+    background: url($img + "home_page_.png") no-repeat center/100%;
+  }
+  .item:nth-child(2) .icon {
+    background: url($img + "message.png") no-repeat center/100%;
+  }
+  .item.active:nth-child(2) .icon {
+    background: url($img + "message_.png") no-repeat center/100%;
+  }
+  .item:nth-child(3) .icon {
+    background: url($img + "information.png") no-repeat center/100% auto;
+  }
+  .item.active:nth-child(3) .icon {
+    background: url($img + "information_.png") no-repeat center/100% auto;
+  }
+  .item:nth-child(4) .icon {
+    background: url($img + "shopping_mail.png") no-repeat center/100% auto;
+  }
+  .item.active:nth-child(4) .icon {
+    background: url($img + "shopping_mail_.png") no-repeat center/100% auto;
+  }
+  .item:nth-child(5) .icon {
+    background: url($img + "personal_center.png") no-repeat center/auto 100%;
+  }
+  .item.active:nth-child(5) .icon {
+    background: url($img + "personal_center_.png") no-repeat center/auto 100%;
+  }
+}

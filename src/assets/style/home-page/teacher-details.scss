@@ -1,0 +1,183 @@
+$img: "/static/images/home-page/";
+
+.teacher-details {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  padding-top: 0.97rem;
+  padding-bottom: 1rem;
+  position: relative;
+  &.active{
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.teacher-details .banner {
+  width: 100%;
+  height: 2.3rem;
+  background-color: orange;
+  position: absolute;
+  top: 0.97rem;
+  left: 0;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.teacher-details .teacher-info {
+  width: 100%;
+  margin-top: 1.7rem;
+  border-bottom: 0.15rem solid #efefef;
+  position: relative;
+  .base-info {
+    width: 4.8rem;
+    height: 1.2rem;
+    margin-left: 0.2rem;
+    border-radius: 0.6rem;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .base-info img.pic {
+    float: left;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+  }
+  .base-info .text-content {
+    float: left;
+    margin-left: 0.32rem;
+    padding-top: 0.18rem;
+    p.name {
+      font-size: 0.34rem;
+      color: #fff;
+      line-height: 0.34rem;
+    }
+    .span-box {
+      margin-top: 0.28rem;
+      span {
+        float: left;
+        font-size: 0.26rem;
+        color: #fff;
+        line-height: 0.26rem;
+      }
+      span.seniority {
+        margin-right: 0.08rem;
+        color: #ffbf0d;
+      }
+      div {
+        float: left;
+        margin: 0.02rem 0.22rem 0;
+        width: 0.03rem;
+        height: 0.24rem;
+        background-color: #fff;
+      }
+    }
+  }
+  .profile {
+    width: 100%;
+    padding-left: 0.4rem;
+    p {
+      font-size: 0.28rem;
+      color: #333434;
+    }
+    .profile-title {
+      width: 100%;
+      height: 0.86rem;
+      line-height: 0.86rem;
+    }
+    .profile-content {
+      border-top: 1px solid #e5e5e5;
+      padding: 0.05rem 0.4rem 0.1rem 0;
+      line-height: 0.5rem;
+    }
+  }
+}
+
+.teacher-details .teacher-achievement {
+  width: 100%;
+  height: 0.53rem;
+  padding: 0 0.8rem;
+  border-bottom: 0.15rem solid #efefef;
+  display: flex;
+  justify-content: space-between;
+  li.item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 0.22rem;
+      color: #a8a8a8;
+      line-height: 0.22rem;
+    }
+  }
+}
+
+.teacher-details .nav-box {
+  width: 100%;
+  nav {
+    width: 100%;
+    height: 0.78rem;
+    padding: 0 2rem;
+    border-bottom: 0.1rem solid #efefef;
+    display: flex;
+    justify-content: space-between;
+    .item {
+      width: 0.7rem;
+      height: 100%;
+      text-align: center;
+      font-size: 0.3rem;
+      color: #999;
+      line-height: 0.78rem;
+    }
+    .item.active {
+      color: #ffbf0d;
+      border-bottom: 0.05rem solid #ffbf0d;
+    }
+  }
+}
+
+.teacher-details footer {
+  width: 100%;
+  height: 0.98rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0 0.5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .phone {
+    width: 2rem;
+    height: 0.68rem;
+    margin-right: 0.3rem;
+    border-radius: 0.34rem;
+    border: 1px solid #ffbf0d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon {
+      width: 0.36rem;
+      height: 0.36rem;
+      background: url($img + "cust_server_phone.png") no-repeat center/100%;
+    }
+    span{
+      margin-left: 0.1rem;
+      font-size: 0.32rem;
+      color: #ffbf0d;
+      line-height: 0.32rem;
+    }
+  }
+  .communication {
+    width: 2rem;
+    height: 0.68rem;
+    border-radius: 0.34rem;
+    background-color: #ffbf0d;
+    font-size: 0.32rem;
+    color: #fff;
+    text-align: center;
+    line-height: 0.68rem;
+  }
+}

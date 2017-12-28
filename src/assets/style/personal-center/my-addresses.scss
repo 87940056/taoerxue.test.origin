@@ -1,0 +1,122 @@
+$img: "/static/images/personal-center/";
+
+.my-addresses {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  padding-top: 0.97rem;
+  padding-bottom: 1rem;
+}
+
+.my-addresses header {
+  width: 100%;
+  height: 0.97rem;
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid #b2b2b2;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  .return {
+    float: left;
+    width: 0.26rem;
+    height: 100%;
+    background: url($img + "return.png") no-repeat center/100% auto;
+  }
+  p {
+    height: 0.34rem;
+    width: 4rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #333434;
+    line-height: 0.34rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.my-addresses .content {
+  width: 100%;
+  li.item {
+    width: 100%;
+    padding-top: 0.3rem;
+    border-bottom: 0.2rem solid #efefef;
+    .part-one_two {
+      width: 100%;
+    }
+    .part-one {
+      width: 100%;
+      padding: 0 0.24rem;
+      span {
+        font-size: 0.28rem;
+        color: #333434;
+        line-height: 0.28rem;
+      }
+      span.consignee {
+        float: left;
+      }
+      span.phone {
+        float: right;
+      }
+    }
+    .part-two {
+      width: 100%;
+      margin-top: 0.24rem;
+      padding: 0 0.24rem;
+      span {
+        font-size: 0.28rem;
+        color: #333434;
+      }
+    }
+    .part-three {
+      width: 100%;
+      margin-top: 0.3rem;
+      padding: 0.24rem 0.24rem 0.24rem 0;
+      border-top: 1px solid #e5e5e5;
+      li {
+        float: right;
+        margin-left: 0.3rem;
+        position: relative;
+      }
+      li .icon {
+        float: left;
+        width: 0.38rem;
+        height: 0.38rem;
+      }
+      li span {
+        float: left;
+        margin-left: 0.1rem;
+        font-size: 0.24rem;
+        color: #242424;
+        line-height: 0.38rem;
+      }
+      li:nth-child(1) .icon {
+        background: url($img + "delete.png") no-repeat center/100%;
+      }
+      li:nth-child(2) .icon {
+        background: url($img + "data_set.png") no-repeat center/100%;
+      }
+    }
+  }
+}
+
+.my-addresses .add-address-button {
+  display: block;
+  width: 100%;
+  height: 1rem;
+  border-radius: 0.1rem;
+  background-color: #ffbf0d;
+  font-size: 0.34rem;
+  color: #fff;
+  line-height: 1rem;
+  text-align: center;
+  letter-spacing: 1px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}

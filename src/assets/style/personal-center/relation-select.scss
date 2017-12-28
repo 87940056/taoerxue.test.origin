@@ -1,0 +1,65 @@
+$img: "/static/images/personal-center/";
+
+.relation-select {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  position: relative;
+}
+
+.relation-select header {
+  width: 100%;
+  height: 0.97rem;
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid #b2b2b2;
+  position: relative;
+  .return {
+    display: block;
+    float: left;
+    width: 0.26rem;
+    height: 100%;
+    background: url($img + "return.png") no-repeat center/100% auto;
+  }
+  p {
+    height: 0.34rem;
+    width: 4rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #333434;
+    line-height: 0.34rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.relation-select .content {
+  width: 100%;
+  li.item {
+    width: 100%;
+    height: 0.98rem;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 0.7rem 0 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .select {
+      width: 0.38rem;
+      height: 0.38rem;
+      border-radius: 50%;
+      border: 1px solid #9b9b9b;
+      &.active {
+        border: none;
+        background: url($img + "selected.png") no-repeat center/100%;
+      }
+    }
+    span {
+      font-size: 0.28rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+  }
+}

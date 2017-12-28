@@ -1,0 +1,109 @@
+$img: "/static/images/home-page/";
+
+.content-details-header {
+  width: 100%;
+  height: 0.97rem;
+  padding: 0.2rem 0.4rem;
+  background-color: #fff;
+  border-bottom: 1px solid #b2b2b2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  .return {
+    float: left;
+    width: 0.26rem;
+    height: 100%;
+    background: url($img + "return.png") no-repeat center/100% auto;
+  }
+  .collect {
+    float: right;
+    width: 0.48rem;
+    margin-right: 0.5rem;
+    height: 100%;
+    background: url($img + "collect.png") no-repeat center/100%;
+  }
+  .collect.active {
+    background: url($img + "collected.png") no-repeat center/100%;
+  }
+  .share {
+    float: right;
+    width: 0.38rem;
+    height: 100%;
+    background: url($img + "share.png") no-repeat center/100%;
+  }
+  p.title {
+    height: 0.34rem;
+    width: 2rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #333434;
+    line-height: 0.34rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.content-details-header .shadow {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  .occupy {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+.content-details-header .shadow .section-share {
+  width: 100%;
+  padding-bottom: 0.32rem;
+  background-color: #fff;
+  p.title-word {
+    font-size: 0.28rem;
+    color: #343434;
+    line-height: 0.28rem;
+    text-align: center;
+    padding: 0.3rem 0;
+  }
+  .share-list {
+    width: 100%;
+    padding: 0 0.45rem;
+    display: flex;
+    justify-content: space-between;
+    li.item {
+      width: 1.2rem;
+      .icon {
+        width: 100%;
+        height: 1rem;
+      }
+      p {
+        margin-top: 0.2rem;
+        font-size: 0.28rem;
+        color: #343434;
+        line-height: 0.28rem;
+        text-align: center;
+      }
+    }
+    li.item:nth-child(1) .icon {
+      background: url($img + "microblog.png") no-repeat center/auto 100%;
+    }
+    li.item:nth-child(2) .icon {
+      background: url($img + "circle.png") no-repeat center/auto 100%;
+    }
+    li.item:nth-child(3) .icon {
+      background: url($img + "wechat.png") no-repeat center/auto 100%;
+    }
+    li.item:nth-child(4) .icon {
+      background: url($img + "link.png") no-repeat center/auto 100%;
+    }
+  }
+}

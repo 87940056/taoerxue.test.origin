@@ -1,0 +1,92 @@
+$img: "/static/images/home-page/";
+
+.evaluate {
+  width: 100%;
+}
+
+.evaluate .score-box {
+  width: 100%;
+  border-bottom: 0.1rem solid #efefef;
+  padding-bottom: 0.2rem;
+  .stars {
+    width: 100%;
+    padding: 0.2rem 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    .item {
+      width: 0.38rem;
+      height: 0.36rem;
+      background: url($img + "star.png") no-repeat center/100%;
+      &.active {
+        background: url($img + "star_half.png") no-repeat center/100%;
+      }
+    }
+  }
+  .score {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    span {
+      display: block;
+      font-size: 0.3rem;
+      color: #ffbf0d;
+      line-height: 0.3rem;
+    }
+  }
+  .describe {
+    margin-top: 0.1rem;
+    font-size: 0.22rem;
+    color: #333;
+    text-align: center;
+    line-height: 0.22rem;
+  }
+}
+
+.evaluate .contents {
+  width: 100%;
+  padding-left: 0.28rem;
+  padding-right: 0.1rem;
+  li.item {
+    width: 100%;
+    padding: 0.15rem 0.3rem 0.15rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    a.pic {
+      display: block;
+      float: left;
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.1rem;
+    }
+    .eva-data {
+      float: left;
+      margin-left: 0.12rem;
+      padding-top: 0.1rem;
+      p.name {
+        font-size: 0.28rem;
+        color: #1d1d1d;
+        line-height: 0.28rem;
+      }
+      p.eva-content {
+        margin-top: 0.08rem;
+        font-size: 0.24rem;
+        color: #9b9b9b;
+        line-height: 0.24rem;
+      }
+    }
+    span.time, span.date {
+      float: right;
+      margin-top: 0.1rem;
+      font-size: 0.22rem;
+      color: #9b9b9b;
+    }
+    span.date {
+      margin-right: 0.15rem;
+    }
+  }
+
+}

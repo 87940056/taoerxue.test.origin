@@ -1,0 +1,358 @@
+$img: "/static/images/home-page/";
+
+.download-management {
+  width: 100%;
+  height: 100vh;
+  background-color: #f2f4f5;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.download-management header {
+  width: 100%;
+  height: 0.97rem;
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid #b2b2b2;
+  position: relative;
+  .return {
+    float: left;
+    width: 0.25rem;
+    height: 100%;
+    background: url($img + "return.png") no-repeat center/100% auto;
+  }
+  .operate {
+    float: right;
+    height: 100%;
+    p.false {
+      font-size: 0.32rem;
+      color: #333434;
+      line-height: 0.6rem;
+    }
+    p.true {
+      font-size: 0.32rem;
+      color: #ffbf0d;
+      line-height: 0.6rem;
+    }
+  }
+  p.header-text {
+    height: 0.34rem;
+    width: 2rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #333434;
+    line-height: 0.34rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.download-management .content-box {
+  width: 100%;
+}
+
+.download-management .content-box nav {
+  width: 100%;
+  height: 0.86rem;
+  padding: 0 1.27rem;
+  display: flex;
+  justify-content: space-between;
+  .item {
+    width: 1.36rem;
+    height: 100%;
+    text-align: center;
+    font-size: 0.28rem;
+    color: #999;
+    line-height: 0.86rem;
+  }
+  .item.active {
+    color: #ffbf0d;
+    border-bottom: 0.05rem solid #ffbf0d;
+  }
+}
+
+.download-management .content-box .downloading {
+  width: 100%;
+}
+
+.download-management .content-box .downloading li.item {
+  width: 100%;
+  padding: 0.24rem 0.25rem;
+  border-bottom: 1px solid #e5e5e5;
+  .select {
+    float: left;
+    margin-right: 0.25rem;
+    margin-top: 0.4rem;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 50%;
+    border: 1px solid #9b9b9b;
+    display: none;
+    &.active {
+      border: none;
+      background: url($img + "select.png") no-repeat center/100%;
+    }
+  }
+  .pic {
+    float: left;
+    position: relative;
+    img {
+      display: block;
+      width: 2rem;
+      height: 1.2rem;
+    }
+    .shadow{
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      opacity: 0.3;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .downloading-status {
+      width: 0.8rem;
+      height: 0.7rem;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      .icon {
+        width: 100%;
+        height: 0.33rem;
+      }
+      p {
+        margin-top: 0.1rem;
+        font-size: 0.22rem;
+        color: #fff;
+        line-height: 0.22rem;
+        text-align: center;
+      }
+    }
+    .downloading-true .icon{
+      background: url($img + "downloading.png") no-repeat center/auto 100%;
+    }
+    .downloading-false .icon{
+      background: url($img + "suspend.png") no-repeat center/auto 100%;
+    }
+  }
+  .pic-right {
+    float: left;
+    margin-left: 0.2rem;
+    p.name {
+      font-size: 0.28rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    .item-details {
+      margin-top: 0.25rem;
+    }
+    .item-details .span-box-left {
+      float: left;
+      span {
+        float: left;
+        font-size: 0.24rem;
+        color: #8ac5fa;
+        line-height: 0.24rem;
+      }
+    }
+    .item-details .span-box-right {
+      float: right;
+      span {
+        float: left;
+        font-size: 0.24rem;
+        color: #999;
+        line-height: 0.24rem;
+      }
+    }
+    .progress-bar {
+      margin-top: 0.25rem;
+      width: 4.5rem;
+      height: 0.04rem;
+      background-color: #e8e9ea;
+      position: relative;
+      .bar-completed {
+        width: 60%;
+        height: 100%;
+        background-color: #8ac5fa;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+.download-management .content-box .downloaded {
+  width: 100%;
+}
+
+.download-management .content-box .downloaded li.item {
+  width: 100%;
+  padding: 0.24rem 0.25rem;
+  border-bottom: 1px solid #e5e5e5;
+  .select {
+    float: left;
+    margin-right: 0.25rem;
+    margin-top: 0.4rem;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 50%;
+    border: 1px solid #9b9b9b;
+    display: none;
+    &.active {
+      border: none;
+      background: url($img + "select.png") no-repeat center/100%;
+    }
+  }
+  img.pic {
+    float: left;
+    display: block;
+    width: 2rem;
+    height: 1.2rem;
+  }
+  .pic-right {
+    float: left;
+    margin-left: 0.2rem;
+    p.name {
+      font-size: 0.28rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    .item-details {
+      margin-top: 0.25rem;
+      .watched {
+        float: left;
+      }
+      .watched span {
+        float: left;
+        font-size: 0.24rem;
+        color: #8ac5fa;
+        line-height: 0.24rem;
+      }
+      .segment {
+        float: left;
+        width: 1px;
+        height: 0.24rem;
+        margin: 0 0.48rem;
+        background-color: #999;
+      }
+      span.duration {
+        float: left;
+        font-size: 0.24rem;
+        color: #999;
+        line-height: 0.24rem;
+      }
+      span.size {
+        float: left;
+        font-size: 0.24rem;
+        color: #999;
+        line-height: 0.24rem;
+      }
+    }
+  }
+}
+
+.download-management footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  .storage-space {
+    width: 100%;
+    height: 0.36rem;
+    background-color: #dcddde;
+    position: relative;
+    .used-space {
+      width: 80%;
+      height: 100%;
+      background-color: #9d9e9e;
+    }
+    .span-box {
+      padding-left: 0.15rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      span {
+        float: left;
+        font-size: 0.22rem;
+        color: #fff;
+        line-height: 0.36rem;
+      }
+    }
+  }
+  .operate {
+    width: 100%;
+    height: 0.88rem;
+    background-color: #fff;
+    .all-pick {
+      float: left;
+      height: 100%;
+      margin-left: 0.25rem;
+      display: flex;
+      align-items: center;
+      .select {
+        width: 0.38rem;
+        height: 0.38rem;
+        border-radius: 50%;
+        border: 1px solid #9b9b9b;
+        &.active {
+          border: none;
+          background: url($img + "select.png") no-repeat center/100%;
+        }
+      }
+      span {
+        margin-left: 0.2rem;
+        font-size: 0.28rem;
+        color: #6d6d6e;
+        line-height: 0.28rem;
+      }
+    }
+    .selected-num {
+      float: right;
+      font-size: 0.28rem;
+      color: #6d6d6e;
+      line-height: 0.88rem;
+    }
+    .submit {
+      float: right;
+      width: 2.14rem;
+      height: 100%;
+      margin-left: 0.3rem;
+      background-color: #ffbf0d;
+      font-size: 0.32rem;
+      color: #fff;
+      line-height: 0.88rem;
+      text-align: center;
+      letter-spacing: 0.1rem;
+    }
+  }
+}
+
+//编辑状态页面样式
+.download-management.active {
+  .content-box {
+    .downloading li.item {
+      .select {
+        display: block;
+      }
+      .pic-right .progress-bar {
+        width: 3.8rem;
+      }
+    }
+    .downloaded li.item {
+      .select {
+        display: block;
+      }
+      .pic-right .segment {
+        margin: 0 0.3rem;
+      }
+    }
+  }
+}
+

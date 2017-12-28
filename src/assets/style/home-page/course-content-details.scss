@@ -1,0 +1,244 @@
+$img: "/static/images/home-page/";
+
+.course-content-details {
+  width: 100%;
+}
+
+.course-content-details .base-info {
+  width: 100%;
+  padding: 0.3rem 0 0.2rem 0.23rem;
+  border-bottom: 0.1rem solid #efefef;
+  p.name {
+    padding-bottom: 0.14rem;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 0.36rem;
+    color: #333;
+    line-height: 0.36rem;
+  }
+  .li-box {
+    width: 100%;
+    height: 0.5rem;
+    padding: 0 0.4rem;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    li.item {
+      height: 0.36rem;
+      .icon {
+        float: left;
+        width: 0.38rem;
+        height: 100%;
+      }
+      span {
+        float: left;
+        font-size: 0.2rem;
+        color: #a8a8a8;
+        line-height: 0.4rem;
+      }
+    }
+    li.item:nth-child(1) .icon {
+      background: url($img + "teacher_icon.png") no-repeat center/auto 100%;
+    }
+    li.item:nth-child(2) .icon {
+      background: url($img + "class_hour.png") no-repeat center/auto 100%;
+    }
+    li.item:nth-child(3) .icon {
+      background: url($img + "play_count.png") no-repeat center/auto 100%;
+    }
+  }
+  .price {
+    width: 100%;
+    margin-top: 0.2rem;
+    padding-left: 0.1rem;
+    span {
+      float: left;
+      font-size: 0.36rem;
+      color: #f53b59;
+      line-height: 0.36rem;
+    }
+  }
+}
+
+.course-content-details .course-label {
+  width: 100%;
+  height: 0.6rem;
+  padding: 0 0.24rem;
+  justify-content: space-between;
+  display: flex;
+  .item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 0.1rem;
+      font-size: 0.22rem;
+      color: #333;
+    }
+  }
+  .item:nth-child(1) .icon {
+    width: 0.4rem;
+    height: 0.4rem;
+    background: url($img + "time.png") no-repeat center/100%;
+  }
+  .item:nth-child(2) .icon {
+    width: 0.4rem;
+    height: 0.4rem;
+    background: url($img + "permanent_effective.png") no-repeat center/100%;
+  }
+  .item:nth-child(3) .icon {
+    width: 0.4rem;
+    height: 0.4rem;
+    background: url($img + "permanent_effective.png") no-repeat center/100%;
+  }
+}
+
+.course-content-details .teacher-info {
+  width: 100%;
+  .info-title {
+    width: 100%;
+    height: 0.4rem;
+    padding-left: 0.37rem;
+    background-color: #efefef;
+    font-size: 0.26rem;
+    color: #333;
+    line-height: 0.4rem;
+  }
+  .info-content {
+    width: 100%;
+    position: relative;
+  }
+  .info-content .teacher-personal {
+    width: 100%;
+    padding: 0.2rem 0 0 0.24rem;
+    display: flex;
+    img.pic {
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+    }
+    .pic-right {
+      flex: 1;
+      margin-left: 0.3rem;
+      padding-bottom: 0.15rem;
+      border-bottom: 1px solid #e5e5e5;
+      .name {
+        width: 100%;
+      }
+      .name span {
+        float: left;
+        font-size: 0.32rem;
+        color: #333;
+        line-height: 0.35rem;
+      }
+      .name .gold-medal {
+        float: left;
+        margin-left: 0.15rem;
+        width: 0.26rem;
+        height: 0.35rem;
+        background: url($img + "gold_medal.png") no-repeat center/100%;
+      }
+      .teacher-describe {
+        margin-top: 0.1rem;
+        width: 4.83rem;
+        height: 0.58rem;
+        font-size: 0.22rem;
+        color: #333;
+      }
+    }
+  }
+  .info-content .teacher-achievement {
+    width: 100%;
+    height: 0.44rem;
+    padding: 0 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    li.item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      span {
+        font-size: 0.22rem;
+        color: #333;
+        line-height: 0.22rem;
+      }
+    }
+  }
+}
+
+.course-content-details .institution-info {
+  width: 100%;
+  .info-title {
+    width: 100%;
+    height: 0.4rem;
+    padding-left: 0.37rem;
+    background-color: #efefef;
+    font-size: 0.26rem;
+    color: #333;
+    line-height: 0.4rem;
+  }
+  .info-content {
+    width: 100%;
+    padding: 0.15rem 0 0.24rem 0.15rem;
+    position: relative;
+    img.pic {
+      float: left;
+      display: block;
+      width: 1.3rem;
+      height: 0.83rem;
+    }
+    .pic-right {
+      float: left;
+      margin-left: 0.16rem;
+      padding-top: 0.06rem;
+    }
+    .pic-right .name {
+      font-size: 0.32rem;
+      color: #333;
+      line-height: 0.32rem;
+    }
+    .pic-right .describe {
+      margin-top: 0.1rem;
+      font-size: 0.22rem;
+      color: #999;
+      line-height: 0.22rem;
+    }
+    .go-details {
+      width: 0.22rem;
+      height: 0.4rem;
+      background: url($img + "go_details.jpg") no-repeat center/100%;
+      position: absolute;
+      right: 0.24rem;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+}
+
+.course-content-details .course-introduce {
+  width: 100%;
+  .info-title {
+    width: 100%;
+    height: 0.4rem;
+    padding-left: 0.37rem;
+    background-color: #efefef;
+    font-size: 0.26rem;
+    color: #333;
+    line-height: 0.4rem;
+  }
+}
+
+.course-content-details .course-evaluate {
+  width: 100%;
+  .info-title {
+    width: 100%;
+    height: 0.4rem;
+    padding-left: 0.37rem;
+    background-color: #efefef;
+    font-size: 0.26rem;
+    color: #333;
+    line-height: 0.4rem;
+  }
+}

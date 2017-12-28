@@ -1,0 +1,144 @@
+$img: "/static/images/others/";
+
+.payment {
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.payment header {
+  width: 100%;
+  height: 0.97rem;
+  padding: 0.2rem 0.4rem;
+  position: relative;
+  .return {
+    float: left;
+    width: 0.25rem;
+    height: 100%;
+    background: url($img + "return.png") no-repeat center/100% auto;
+  }
+  p {
+    height: 0.34rem;
+    width: 2rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #333434;
+    line-height: 0.34rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.payment .payment-info {
+  width: 100%;
+  padding: 0.2rem 0 0.2rem 1.38rem;
+  background-color: #efefef;
+  .icon {
+    float: left;
+    width: 1.34rem;
+    height: 1.3rem;
+    background: url($img + "wallet.png") no-repeat center/100%;
+  }
+  .payment-content {
+    float: left;
+    margin-left: 0.22rem;
+    margin-top: 0.33rem;
+    .amount {
+      span {
+        float: left;
+        font-size: 0.28rem;
+        color: #333434;
+        line-height: 0.36rem;
+      }
+      span.amount-content {
+        font-size: 0.36rem;
+        color: #f53b59;
+        line-height: 0.36rem;
+      }
+    }
+    .payee {
+      margin-top: 0.2rem;
+      span {
+        float: left;
+        font-size: 0.2rem;
+        color: #333434;
+        line-height: 0.2rem;
+      }
+    }
+  }
+}
+
+.payment .payment-methods{
+  width: 100%;
+  li.item{
+    width: 100%;
+    height: 1.56rem;
+    padding: 0.3rem 0 0 0.5rem;
+    border-bottom: 0.2rem solid #efefef;
+    position: relative;
+    .icon{
+      float: left;
+      width: 0.48rem;
+      height: 0.38rem;
+    }
+    .method-info{
+      float: left;
+      margin-left: 0.4rem;
+      p.name{
+        font-size: 0.32rem;
+        color: #333434;
+        line-height: 0.32rem;
+      }
+      p.prompt{
+        margin-top: 0.2rem;
+        font-size: 0.26rem;
+        color: #9b9b9b;
+        line-height: 0.26rem;
+      }
+    }
+    .select{
+      width: 0.38rem;
+      height: 0.38rem;
+      border-radius: 50%;
+      border: 1px solid #9b9b9b;
+      position: absolute;
+      right: 0.5rem;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+  }
+  li.item:nth-child(1) .icon{
+    background: url($img + "alipay.png") no-repeat center/auto 100%;
+  }
+  li.item:nth-child(2) .icon{
+    background: url($img + "wechat.png") no-repeat center/auto 100%;
+  }
+  li.item:nth-child(3) .icon{
+    background: url($img + "bank_card.png") no-repeat center/100% auto;
+  }
+  li.item.active .select{
+    border: none;
+    background: url($img + "select.png") no-repeat center/100%;
+  }
+}
+
+.payment .submit{
+  width: 6.8rem;
+  height: 1rem;
+  margin: 3.8rem auto 0;
+  background-color: #ffbf0d;
+  border-radius: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span{
+    font-size: 0.34rem;
+    color: #fff;
+  }
+}

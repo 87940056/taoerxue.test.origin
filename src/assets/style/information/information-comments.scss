@@ -1,0 +1,170 @@
+$img: "/static/images/information/";
+
+.information-comments {
+  width: 100%;
+  background-color: #fff;
+}
+
+.information-comments header {
+  width: 100%;
+  height: 0.97rem;
+  padding: 0.2rem 0.4rem;
+  position: relative;
+  .return {
+    float: left;
+    width: 0.25rem;
+    height: 100%;
+    background: url($img + "return.png") no-repeat center/100% auto;
+  }
+  .num {
+    float: right;
+    height: 100%;
+    font-size: 0.32rem;
+    color: #ffbf0d;
+    line-height: 0.56rem;
+  }
+  p {
+    height: 0.34rem;
+    width: 2rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #333434;
+    line-height: 0.34rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.information-comments .contents {
+  width: 100%;
+}
+
+.information-comments li.content {
+  width: 100%;
+  margin-bottom: 0.3rem;
+  p.title-text {
+    padding-left: 0.34rem;
+    border-left: 0.2rem solid #f5b91d;
+    background-color: #f9f9f9;
+    font-size: 0.3rem;
+    color: #9b9b9b;
+    line-height: 0.5rem;
+  }
+  .comments {
+    width: 100%;
+  }
+  .comments li.item {
+    width: 100%;
+    padding: 0.3rem 0 0.3rem 0.3rem;
+    border-bottom: 1px solid #e5e5e5;
+    a.pic {
+      float: left;
+      display: block;
+      width: 0.8rem;
+      height: 0.8rem;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .pic-right {
+      float: left;
+      width: 5.8rem;
+      margin-left: 0.12rem;
+    }
+    .pic-right p.user-name {
+      font-size: 0.28rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    .pic-right p.text-content {
+      width: 100%;
+      height: 0.54rem;
+      margin-top: 0.08rem;
+      font-size: 0.24rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    .pic-right .time-thumb {
+      margin-top: 0.15rem;
+      .time {
+        float: left;
+        font-size: 0.22rem;
+        color: #9b9b9b;
+        line-height: 0.44rem;
+      }
+      .thumb {
+        float: right;
+      }
+      .thumb .icon {
+        float: left;
+        width: 0.4rem;
+        height: 0.44rem;
+        background: url($img + "thumb.png") no-repeat center/100%;
+      }
+      .thumb .icon.active {
+        background: url($img + "thumb_active.png") no-repeat center/100%;
+      }
+      .thumb span {
+        float: left;
+        margin-left: 0.2rem;
+        font-size: 0.22rem;
+        color: #9b9b9b;
+        line-height: 0.44rem;
+      }
+    }
+  }
+  .more {
+    width: 100%;
+    height: 0.7rem;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      display: block;
+      font-size: 0.3rem;
+      color: #1d1d1d;
+      line-height: 0.3rem;
+    }
+    .icon {
+      margin-left: 0.15rem;
+      width: 0.24rem;
+      height: 0.24rem;
+      background: url($img + "more_comments.png") no-repeat center/100%;
+    }
+  }
+}
+
+.information-comments .comment-now-box {
+  width: 100%;
+  padding: 0.2rem 0;
+  background-color: #eee;
+}
+
+.information-comments .comment-now {
+  width: 6.38rem;
+  height: 0.6rem;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 0.1rem;
+  padding-left: 0.32rem;
+  display: flex;
+  align-items: center;
+  .icon {
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url($img + "comment_now.png") no-repeat center/100%;
+  }
+  span {
+    margin-left: 0.18rem;
+    font-size: 0.24rem;
+    color: #999;
+    line-height: 0.24rem;
+  }
+}

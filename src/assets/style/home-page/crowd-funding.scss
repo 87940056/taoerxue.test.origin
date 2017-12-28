@@ -1,0 +1,198 @@
+$img: "/static/images/home-page/";
+
+.crowd-funding {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 0.97rem;
+  padding-bottom: 1rem;
+  background-color: #fff;
+  position: relative;
+}
+
+.crowd-funding .banner {
+  width: 100%;
+  height: 5rem;
+  position: relative;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.crowd-funding .content {
+  width: 100%;
+  p.course-name {
+    padding: 0.3rem 0 0.3rem 0.24rem;
+    font-size: 0.36rem;
+    color: #333;
+    line-height: 0.36rem;
+  }
+  .teacher-box {
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .teacher-box .title {
+    width: 100%;
+    padding: 0.08rem 0 0.08rem 0.37rem;
+    background-color: #efefef;
+    font-size: 0.26rem;
+    color: #333;
+    line-height: 0.26rem;
+  }
+  .teacher-box .teacher {
+    width: 100%;
+    padding: 0.2rem 0 0.2rem 0.24rem;
+    position: relative;
+    img.pic {
+      display: block;
+      float: left;
+      width: 1rem;
+      height: 1rem;
+    }
+    .pic-right {
+      float: left;
+      margin-left: 0.3rem;
+    }
+    .pic-right .name-box {
+      p.name {
+        float: left;
+        font-size: 0.32rem;
+        color: #333;
+        line-height: 0.35rem;
+      }
+      .gold-medal {
+        float: left;
+        margin-left: 0.15rem;
+        width: 0.27rem;
+        height: 0.35rem;
+        background: url($img + "gold_medal.png") no-repeat center/100%;
+      }
+    }
+    .pic-right p.describe {
+      margin-top: 0.14rem;
+      font-size: 0.22rem;
+      color: #333;
+      line-height: 0.22rem;
+    }
+  }
+  .base-info {
+    width: 100%;
+    padding-left: 0.24rem;
+    li.info-item {
+      width: 100%;
+      height: 0.6rem;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      align-items: center;
+      .icon {
+        width: 0.4rem;
+        height: 0.4rem;
+      }
+      span {
+        margin-left: 0.1rem;
+        font-size: 0.22rem;
+        color: #333;
+        line-height: 0.22rem;
+      }
+      &:nth-child(1) .icon {
+        background: url($img + "time.png") no-repeat center/100%;
+      }
+      &:nth-child(2) .icon {
+        background: url($img + "address__.png") no-repeat center/auto 100%;
+      }
+      &:nth-child(3) .icon {
+        background: url($img + "price.png") no-repeat center/100%;
+      }
+    }
+  }
+  .schedule {
+    width: 100%;
+    margin-top: 0.2rem;
+    padding: 0 0.24rem 0.5rem;
+    .part-one {
+      width: 100%;
+      span {
+        font-size: 0.2rem;
+        color: #ffbf0d;
+        line-height: 0.2rem;
+        &:nth-child(1) {
+          float: left;
+        }
+        &:nth-child(2) {
+          float: right;
+        }
+      }
+    }
+    .progress-bar {
+      width: 100%;
+      height: 2px;
+      margin: 0.08rem 0;
+      background-color: #b9b9b9;
+      div {
+        height: 2px;
+        background-color: #ffbf0d;
+      }
+    }
+    .part-two {
+      width: 100%;
+      span {
+        font-size: 0.2rem;
+        color: #a8a8a8;
+        line-height: 0.2rem;
+        &:nth-child(1) {
+          float: left;
+        }
+        &:nth-child(2) {
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+.crowd-funding footer {
+  width: 100%;
+  height: 0.98rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0 0.5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .phone {
+    width: 2rem;
+    height: 0.68rem;
+    margin-right: 0.3rem;
+    border-radius: 0.34rem;
+    border: 1px solid #ffbf0d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon {
+      width: 0.36rem;
+      height: 0.36rem;
+      background: url($img + "cust_server_phone.png") no-repeat center/100%;
+    }
+    span {
+      margin-left: 0.1rem;
+      font-size: 0.32rem;
+      color: #ffbf0d;
+      line-height: 0.32rem;
+    }
+  }
+  .communication {
+    width: 2rem;
+    height: 0.68rem;
+    border-radius: 0.34rem;
+    background-color: #ffbf0d;
+    font-size: 0.32rem;
+    color: #fff;
+    line-height: 0.32rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
