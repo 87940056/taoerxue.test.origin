@@ -85,8 +85,8 @@
         <li class="item" v-for="item in msg_crowdFunding">
           <div class="part-one">
             <div class="teacher">
-              <img :src="item.teacher.pic" alt="" class="pic">
-              <span class="name">{{item.teacher.name}}</span>
+              <img :src="item.teacherPhoto" alt="" class="pic">
+              <span class="name">{{item.teacherName}}</span>
             </div>
             <div class="address">
               <div class="icon"></div>
@@ -94,15 +94,12 @@
             </div>
           </div>
           <div class="part-two">
-            <img v-lazy="item.pic" alt="" class="pic">
+            <img v-lazy="item.photo" alt="" class="pic">
             <p class="name">{{item.name}}</p>
           </div>
           <router-link class="mask" to="/crowd-funding"></router-link>
         </li>
       </ul>
-      <div class="content" v-for="item in msg_crowdFunding">
-
-      </div>
     </div>
     <div class="part-recommendCourses part-courses" v-if="msg_recommendCourses">
       <div class="title clearfix">
@@ -177,11 +174,12 @@
         } else {
           this.direction = 0;
         }
+        console.log(this.direction);
       },
       getCrowdFunding: function () {
         $.ajax({
           type: "post",
-          url: "/course",
+          url: "/raiseTheClassInfo/getUnderwayClassList",
 //          headers: {
 //            Authorization: sessionStorage.token || ""
 //          },
@@ -192,36 +190,36 @@
           dataType: "json",
           success: function (data) {
 
-          },
+          }.bind(this),
           error: function () {
             var data = {
               code: 0,
-              msg: [
+              data: [
                 {
                   id: 122,
-                  name: "国家特级教师王晓路中考应试点播",
-                  pic: "/static/images/home-page/course_.png",
-                  address: "古墩路",
-                  teacher: {
-                    id: 133,
-                    name: "王晓路",
-                    pic: "/static/images/home-page/pic.png",
+                  name: "天寒社硬笔书法课程",
+                  photo: "/static/images/home-page/course_.png",
+                  address: "杭州市余杭区梦想小镇天使村6-202",
+                  teacherId: 12,
+                  teacherName: "王晓路",
+                  teacherPhoto: "/static/images/home-page/pic.png",
+                  teacherBrief: "全国最好的书法老师",
+                  teacherDetails: "",
+                  time: "2017-11-15 19:00-21:00",
+                  targetPrice: "30000",
+                  targetNumber: 100,
+                  raisedMoney: "18000",
+                  raisedNumber: 60,
+                  daysRemaining: 12,
+                  withMe: {
+                    status_own: false,
+                    status_collect: true
                   }
-                },
-//                {
-//                  id: 122,
-//                  name: "国家特级教师王晓路中考应试点播",
-//                  pic: "/static/images/home-page/course_.png",
-//                  address: "古墩路",
-//                  teacher: {
-//                    id: 133,
-//                    name: "王晓路",
-//                    pic: "/static/images/home-page/pic.png",
-//                  }
-//                }
+                }
               ]
             };
-            this.msg_crowdFunding = data.msg;
+            this.msg_crowdFunding = data.data;
+            sessionStorage.msg_crowdFunding = JSON.stringify(data.data);
           }.bind(this)
         })
       },
@@ -338,6 +336,7 @@
           AMap.event.addListener(geolocation, 'complete', function (data) {
             var x = data.position.getLng(), //定位成功返回的经度
               y = data.position.getLat(); //定位成功返回的纬度
+            sessionStorage.xy = JSON.stringify({x: x, y: y});
             //逆地理编码获取城市名称
             toCity([x, y]);
           });
@@ -375,6 +374,9 @@
         autoplayDisableOnInteraction: false,
         autoplay: 3000
       });
+    },
+    beforeDestroy: function () {
+//      $(window).off("scroll",this.setDirection);
     }
   }
 </script>

@@ -19,12 +19,13 @@ $img: "/static/images/home-page/";
     margin-right: 0.48rem;
     background: url($img + "return.png") no-repeat center/100%;
   }
-  .search {
+  .search-button {
     width: 5.26rem;
     height: 0.6rem;
     padding: 0 0.25rem;
     border-radius: 0.1rem;
     background-color: #eee;
+    position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

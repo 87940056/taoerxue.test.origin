@@ -15,11 +15,11 @@
         </div>
         <span class="date">{{msg.date}}</span>
       </div>
-      <!--<div class="html-box" v-html="msg.riches"></div>-->
+      <div class="html-box" v-html="msg.riches"></div>
       <div class="content-bottom">
         <div class="read-info clearfix">
           <span>阅读</span>
-          <span>{{msg.num_read}}</span>
+          <span>{{msg.readNum}}</span>
         </div>
       </div>
     </div>
@@ -31,13 +31,13 @@
         </ul>
       </div>
       <ul class="relevant-content">
-        <li class="item" v-for="item in msg.relevant_articles">
+        <li class="item" v-for="item in msg.relevantArticles">
           <router-link :to="`/information-details?id=${item.id}`">{{item.title}}</router-link>
         </li>
       </ul>
     </div>
     <div class="comment clearfix">
-      <router-link to="/information-commenting" class="comment-now">
+      <router-link to="/commenting" class="comment-now">
         <div class="icon"></div>
         <span>写评论</span>
       </router-link>
@@ -83,7 +83,44 @@
     },
     methods: {
       goBack: function () {
-        router.push("/information?active="+this.$route.query.active);
+        router.push("/information?active=" + this.$route.query.active);
+      },
+      getData: function () {
+        $.ajax({
+          type: "post",
+          url: "/information",
+          data: {
+            id: 22
+          },
+          dataType: "json",
+          success: (data) => {
+
+          },
+          error: () => {
+            var data = {
+              code: 0,
+              data: {
+                id: 22,
+                title: "山东习近平一月：10月关键词——十九大",
+                source: "天天教育",
+                date: "2017-11-15",
+//                riches: '<html>↵<head>↵	<title></title>↵</head>↵<body>↵<p>大家对于这一大家人应该再熟悉不过了，小猪佩奇的形象早已经深入孩子们的心里。现在，她又火了。这次是因为一位宝妈的吐槽&hellip;&hellip;</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/5c11ed997f5b453dbc91dd3fc12776a0.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>因为看完这只粉红色的小猪，她家宝宝沉迷于模仿小猪佩奇无法自拔。和乔治跳床、跳沙发、跳水坑、哪都跳，还天天学猪叫，hong hong hong 叫了一年多，也是学得很到位了！</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/308ab38363c846b5a6d0f0cc63b60a76.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>吐槽一出，立马引发广大家长的共鸣：原来不是我自己<br /><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/e2ad898dc6154072be27ac3dbc3cc434.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/9aaf2856c5f64ab3874649a5dd883bbe.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/f25ad5b9d0ac4507bb696e493f099488.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>甚至还有家长不太理解&quot;干嘛整天要看这几个吹风机&quot;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/a6592b9f362547269257eba82f529cce.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>不信邪的小Q专门找来自己看了，结果，刚看了一集就中毒了。每句话自动＋猪叫，也是相当有魔性了</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/6dfe38766c9348d4a7839bd5bd37dfba.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p><strong>可是，为什么小猪佩奇在孩子们心里有这么高的地位呢？ </strong></p>↵↵<p><br />&nbsp;</p>↵↵<p><strong>有一个幸福的家</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>看了小猪佩奇都知道，佩奇的爸爸妈妈非常相爱，从来不会吵架。猪妈妈耐心且有智慧，猪爸爸慈祥老实，是孩子们崇拜的对象。除了爸爸妈妈，弟弟乔治和佩奇的感情也非常好，一家人像朋友一样相处着。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/9712f326ff7445029b92d26295932aff.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p><strong>有许多优秀的朋友</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>佩奇在幼儿园有一群优秀的好朋友，小狗丹尼、小羊苏西、小兔瑞贝卡还有他的弟弟乔治....他们一起玩耍，一起冒险，有朋友的陪伴，让佩奇的童年不孤单。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/cbee349529a74d5aa5a4bc25382e5f7f.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p><strong>有足够的关注和鼓励</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>猪爸爸和猪妈妈都非常关注佩奇的心理变化，他们总是认真倾听佩奇的心声，然后用巧妙的方法帮她化解，并鼓励她继续前进。关注和鼓励，给佩奇的童年生活大大加分。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/d6f98b2b6c784049a275854799f51acc.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>其实，动画片是一本没有写成文字的教科书。如果你还在把动画片当做是哄孩子的一种工具，那一定是你在找借口偷懒了。家长不能让孩子一个人看而撒手不管，而应该陪伴孩子一起看，在观看的同时去教育和引导，帮助孩子理解动画片中的情节，避免孩子模仿不合适的内容。</p>↵</body>↵</html>',
+                riches: '<html>↵<head>↵	<title></title>↵</head>↵<body>↵<p>熊孩子们&ldquo;无所畏惧&rdquo;，能下定决心连划29辆车，也敢在11楼窗台上飞檐走壁&hellip;大部分孩子没有这么&ldquo;熊&rdquo;，但也难免犯错，家长该怎样教育惩罚呢？惩罚要讲求方式，一旦处理不当，不但起不到规范作用，还可能使宝宝变得叛逆。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/24062c38e0534d9d9aab573576a9ae27.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/a7cba71fb3434950800edbab06e195dc.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/9b0bef6b02714b49985c24068f687503.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/667d4554a29644ae9ae7006953daee58.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/2140439a547546c1bd06980720b26578.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/37a12b2d324c46158e4b23ec97c0b749.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/3134b70974334380a53609c21456f7e0.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/924c4675be15497d854b5c82f27bb79e.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/dd660e921979492b87696101283b39a8.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>这些方法对于熊孩子来说是再好不过了，妈妈们get到了吗？</p>↵</body>↵</html>',
+//                riches: '<html>↵<head>↵	<title></title>↵</head>↵<body>↵<p>&ldquo;这孩子挺好的，懂事听话。&rdquo;很多爸妈最爱听到这句话，但是，孩子懂事真是一件好事吗？</p>↵↵<p><br />&nbsp;</p>↵↵<p>最近，一位妈妈在网上讲述了自己的经历：儿子在儿童医院住院，护工、护士都夸他懂事，妈妈听着却有些心酸&mdash;&mdash;被要求吃药、打针、坐在床上不要动，都乖乖地一件件照做，没有一点哭闹和迟疑。那些本该有的害怕、痛苦、恐惧去哪儿了？当然没有消失，只是被小小年纪的他封存在了心里，一个人默默承受。</p>↵↵<p><br />&nbsp;</p>↵↵<p>作家张悦然在《樱桃之远》中这样写道：&ldquo;孩子是最坚忍的人群，他们还不懂得用逃脱抵制痛苦，也不懂得用宣泄反抗折磨。他们只能伸着冰冷的小手小脚，甚至根本不会有人察觉到他们久久不能平息的心悸。&rdquo;</p>↵↵<p><br />&nbsp;</p>↵↵<p><strong>而孩子的沉默，隐忍，恐惧，以及讨好，在麻木的大人眼中，便是：懂事。</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>可怕的是，懂事像基因一样，一旦被大人植入到孩子的观念里，一辈子可能都会习惯性地懂事。就像，下面这组漫画里所描绘的那个女子，一辈子懂父母、懂丈夫、懂孩子，唯独忘记了自己。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/e7679bd8c8114fa8afee5699f3a891bb.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/d5d7aa99794c40028654935267440665.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/480eeeeaea3741b9a4ddbb91592f6ae1.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/0e9bc7787f4a424c94132fd731454f50.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/0f935a5691534382a4c518b1d961fbdb.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/a38c4e7f8717424aa1345f3dcb09877a.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/c56a91b95e904b59bae91976ecbfc7ae.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/5b5fedd9a6eb44a58b10105aef7b1355.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/eec540ac64e744218ca455b028a52333.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/821939d8a0f14dee859b14ec2d9d185c.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/5d6681293bc7491caa6f2dba55b8d0b2.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/0f18e5ceac034c1c87ab90d78dc84cbd.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/89987a4b9d5d4bd69bb94f43bed59851.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/f38076400fcb471f95af37e6e6c8b077.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/75e85e6b5fa842258d1ca0e88096ad5b.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/ee959d4c695e452ba616dd2e64500522.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/353ce394e2e94dd5a3cc9c8713885269.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/861a238fcfad46418b87caeca75b58e8.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/fcebd6d1951943e4aeb62ad53a1b4e36.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/71d69459993c407b8cc73833211108bb.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/84986a0fc2764e63a20235eeb32577c5.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/5126d24daf8e41ba8a3fcc2adacfd064.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171227/841a81ea1db0497dae5154545eb273b1.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>从这个女子身上，不少人看到了自己的影子。</p>↵↵<p><br />&nbsp;</p>↵↵<p>也许小时候，父母第1次、第2次要求我们懂事的时候，我们的内心有反抗。但100、1000次之后，我们就习惯了懂事，习惯了牺牲自我、满足别人的要求。不平、委屈、痛苦都隐忍在心里，慢慢地将自己变成了一个没有自我、舍己为人的人。</p>↵↵<p><br />&nbsp;</p>↵↵<p>伟大吗？那是对别人而言，对自己，只有可怜。</p>↵↵<p><br />&nbsp;</p>↵↵<p>诚然，生活需要相互理解、善解人意，不可能没有委屈和痛苦，但还是要告诉孩子&mdash;&mdash;<strong>记得爱自己、倾听自己的声音、勇于表达自己，永远不要让自己对自己失望、不要委屈自己。</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>人生只有一次，这一次是我们自己的，也是孩子自己的。</p>↵</body>↵</html>',
+                readNum: 121,
+                keyword: ["大大", "关键", "小康", "会议"],
+                relevantArticles: [
+                  {id: 1, title: "孩子不吃饭怎么办？灌药"},
+                  {id: 2, title: "孩子不吃饭怎么办？灌药"},
+                  {id: 3, title: "孩子不吃饭怎么办？灌药"}
+                ],
+                status_collect: false
+              }
+            };
+            this.msg = data.data;
+            this.msg.riches = this.richesHandle(this.msg.riches);
+          }
+        })
       },
       setCollectStatus: function () {
         this.msg.status_collect = !this.msg.status_collect;
@@ -153,55 +190,7 @@
       }
     },
     created: function () {
-      var data = [
-        {
-          id: 1,
-          title: "山东习近平一月：10月关键词——十九大",
-          source: "天天教育",
-          date: "2017-11-15",
-          riches: '<html>↵<head>↵	<title></title>↵</head>↵<body>↵<p>大家对于这一大家人应该再熟悉不过了，小猪佩奇的形象早已经深入孩子们的心里。现在，她又火了。这次是因为一位宝妈的吐槽&hellip;&hellip;</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/5c11ed997f5b453dbc91dd3fc12776a0.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>因为看完这只粉红色的小猪，她家宝宝沉迷于模仿小猪佩奇无法自拔。和乔治跳床、跳沙发、跳水坑、哪都跳，还天天学猪叫，hong hong hong 叫了一年多，也是学得很到位了！</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/308ab38363c846b5a6d0f0cc63b60a76.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>吐槽一出，立马引发广大家长的共鸣：原来不是我自己<br /><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/e2ad898dc6154072be27ac3dbc3cc434.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/9aaf2856c5f64ab3874649a5dd883bbe.jpeg" /></p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/f25ad5b9d0ac4507bb696e493f099488.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>甚至还有家长不太理解&quot;干嘛整天要看这几个吹风机&quot;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/a6592b9f362547269257eba82f529cce.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>不信邪的小Q专门找来自己看了，结果，刚看了一集就中毒了。每句话自动＋猪叫，也是相当有魔性了</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/6dfe38766c9348d4a7839bd5bd37dfba.jpeg" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p><strong>可是，为什么小猪佩奇在孩子们心里有这么高的地位呢？ </strong></p>↵↵<p><br />&nbsp;</p>↵↵<p><strong>有一个幸福的家</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>看了小猪佩奇都知道，佩奇的爸爸妈妈非常相爱，从来不会吵架。猪妈妈耐心且有智慧，猪爸爸慈祥老实，是孩子们崇拜的对象。除了爸爸妈妈，弟弟乔治和佩奇的感情也非常好，一家人像朋友一样相处着。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/9712f326ff7445029b92d26295932aff.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p><strong>有许多优秀的朋友</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>佩奇在幼儿园有一群优秀的好朋友，小狗丹尼、小羊苏西、小兔瑞贝卡还有他的弟弟乔治....他们一起玩耍，一起冒险，有朋友的陪伴，让佩奇的童年不孤单。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/cbee349529a74d5aa5a4bc25382e5f7f.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p><strong>有足够的关注和鼓励</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>猪爸爸和猪妈妈都非常关注佩奇的心理变化，他们总是认真倾听佩奇的心声，然后用巧妙的方法帮她化解，并鼓励她继续前进。关注和鼓励，给佩奇的童年生活大大加分。</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img max-width="600" src="http://5b0988e595225.cdn.sohucs.com/images/20171108/d6f98b2b6c784049a275854799f51acc.gif" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p>其实，动画片是一本没有写成文字的教科书。如果你还在把动画片当做是哄孩子的一种工具，那一定是你在找借口偷懒了。家长不能让孩子一个人看而撒手不管，而应该陪伴孩子一起看，在观看的同时去教育和引导，帮助孩子理解动画片中的情节，避免孩子模仿不合适的内容。</p>↵</body>↵</html>',
-          num_read: 121,
-          keyword: ["大大", "关键", "小康", "会议"],
-          relevant_articles: [
-            {id: 1, title: "孩子不吃饭怎么办？灌药"},
-            {id: 2, title: "孩子不吃饭怎么办？灌药"},
-            {id: 3, title: "孩子不吃饭怎么办？灌药"}
-          ],
-          status_collect: false
-        },
-        {
-          id: 2,
-          title: "看见快接啊圣诞快乐，地煞符",
-          source: "天天教育",
-          date: "2017-11-15",
-          riches: '<html>↵<head>↵	<title></title>↵</head>↵<body>↵<p>有人说家排是神秘的，通灵的，其实家庭系统排列并不神秘，也并不沉重，相反它是非常轻松、具有创造力的，它是一种疏通关系的有效工具，一门支持生命成长、朝向幸福和谐的学问&hellip;&hellip;</p>↵↵<p><br />&nbsp;</p>↵↵<p><strong>家庭系统排列到底是什么？</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>&ldquo;家庭系统排列&rdquo; 是德国心理治疗大师伯特&middot;海灵格经30年的研究发展起来的一个新的家庭治疗方法。通过现象学探究问题的引发根源，呈现隐藏在现实背后的影响因素。在当今的欧美广泛地应用于康复、教育、商业、组织发展（如企业重组、企业并购、企业文化改变）等方面，在心理治疗方面则多应用于家庭治疗。</p>↵↵<p><br />&nbsp;</p>↵↵<p>家庭系统排列最早是从家庭治疗开始，但是发展到今天已经远远超越了这个领域，已经从人与家庭系统的关系，发展到人与自然、人与宇宙的关系&hellip;&hellip;</p>↵↵<p><br />&nbsp;</p>↵↵<p style="text-align: center;"><img alt="" src="http://image.taoerxue.com/999b7dc51f4c471a8a9fddafbf51a399.jpg" style="width: 490px; height: 326px;" /></p>↵↵<p style="text-align: center;"><br />&nbsp;</p>↵↵<p><strong>家庭系统排列的原理</strong></p>↵↵<p><br />&nbsp;</p>↵↵<p>作为社会性的生命，每个人都隶属于某些系统：他会是一个家庭的成员、某个社区的居民、某个组织的一员&hellip;&hellip;而且他本人就是一个系统，一个身、心各要素构成的系统。这些大大小小的系统相互联系，结构成一个完整的社会系统。社会中的每个人就是在这样一个社会系统中孕育、出生、成长起来的。</p>↵↵<p><br />&nbsp;</p>↵↵<p>从人的发展来说，家庭是基本，且重要的一个系统。海灵格发现在家庭系统中，有一些隐藏的、不易被人们意识觉察到的动力操控着家庭成员之间的关系&mdash;&mdash;爱的序位，并不跟随社会及文化的标准或规则运行，而是在这些标准或规则之上运行。如果我们跟随&ldquo;爱的序位&rdquo;和家人相处，关系就会很好，大家都能够快乐和健康的成长；如果我们忽略了它，家人会受困扰，这些困扰就是&ldquo;牵连&rdquo;。</p>↵↵<p><br />&nbsp;</p>↵↵<p>海灵格发现，很多人的身心问题，其实都是&ldquo;牵连&rdquo;造成的。&ldquo;牵连&rdquo;可以说是&ldquo;重复着一个之前的家族成员的命运&rdquo;。而很多&ldquo;牵连&rdquo;的开始，是儿童早期凭着对父母单纯的&ldquo;爱&rdquo;，企图接过父母的问题引起的。用当今精神分析理念来说，是一个人没有顺利完成与父母的分离造成的。在一个家庭中，这种未完成的分离还可能是家族中一连串的&ldquo;牵连&rdquo;关系。&ldquo;牵连&rdquo;会使一个家庭成员从幼年开始就产生不能理解的思想、情绪、行为以及人际关系欠佳、疾病和心理问题，并延续在其生命中。</p>↵↵<p><br />&nbsp;</p>↵↵<p>这些隐藏的动力影响或控制着我们，而我们又难以觉察到它的存在，但我们可能实实在在地因没有尊重它而感受到伤害。因此，我们可以从这些伤害中知晓它的存在。海灵格的&ldquo;家庭系统排列&rdquo;治疗，就是借由他所发展出来的方法，将&ldquo;牵连&rdquo;的原因显露出来，而且往往能找出化解的可能。</p>↵↵<p><br />&nbsp;</p>↵↵<p>系统排列是新发展出来的应用学问，它隶属于现象学，是通过个案代表的方式呈现出来我们当下的状态，进而能够帮助人去取得系统里隐藏的资料，因而对事情的处理有更清晰的了解。系统排列的技巧，用在企业管理、人事纠纷、未来选择等需要中，称为&ldquo;组织系统排列&rdquo;；用在心理治疗方面，则能够把一些深层的家族 困扰找出和化解，称为&ldquo;家庭系统排列&rdquo;。</p>↵</body>↵</html>',
-          num_read: 121,
-          keyword: ["大大", "关键", "小康", "会议"],
-          relevant_articles: [
-            {id: 1, title: "孩子不吃饭怎么办？灌药"},
-            {id: 2, title: "孩子不吃饭怎么办？灌药"},
-            {id: 3, title: "孩子不吃饭怎么办？灌药"}
-          ],
-          status_collect: false
-        },
-        {
-          id: 1,
-          title: "点卡岁的卡萨克拉，副科级的思考",
-          source: "天天教育",
-          date: "2017-11-15",
-          riches: '小宇是我手上的一个新生，才来一个星期的时间，他高高壮壮，咋一看上去与他初三的身份实在不符，联想到我之前带过的一个学生，他们体型相似，所以我本以为这个小伙子也是很健谈，也是很自信的，但是与他简单交流过后，才发现，这是个害羞的男孩儿，细声细语，也不太敢正视我的眼睛，生怕惊扰了这一片宁静。↵↵&nbsp;↵↵与小宇接触多了之后，他渐渐打开了自己，笑容没那么羞涩了，开始和我聊他最喜欢的汽车，聊他精通的计算机，聊他们班上的同学和老师，也问我很多问题，这个在两个培优老师看来很聪明的学生，逐渐在展示着他的优势。↵↵&nbsp;↵↵↵↵&nbsp;↵↵小宇家住黄陂，就读黄陂实验中学，周末两天的时间都在尖锋，妈妈希望小宇在这里的时间，将学校作业和培优作业全部完成，并再安排其它的内容，用一句话说，就是不要让他闲着。小宇来的第一天，午饭是我们带他出去的，第二天，小宇说自己可以单独出去。↵↵&nbsp;↵↵这些在我们看来，并没有什么不妥，因为这已经是一个初三的大男孩了，很多事情他可以自己安排。↵↵&nbsp;↵↵后来妈妈说，小宇在小学的时候从楼上摔下来过，所以在安全问题上他们很注意，希望避免一切危险发生，不要让他单独出去，更别谈独自做什么事情，就连每天放学后的时间，也是妈妈全权安排的，家长完全将小宇的生活和学习与外界隔离了，他们以为这样是给他最好的保护，殊不知这样的过度照顾，使得小宇基本没有自己的想法和处事的能力，在父母的特殊羽翼下，就算小宇心底想反抗，但也只是想想而已。↵↵&nbsp;↵↵↵↵&nbsp;↵↵写到这里，我不得不将小宇和我另外一个学生作个对比。↵↵&nbsp;↵↵他是一个新初一的学生，瘦瘦小小，但是人小鬼大，家长将学生作为一个个体，而不是附属品，只要是学生能做的，都尽量让他自己去处理，在小学阶段，他可以一个人坐轻轨坐地铁去爷爷家，一个人逛公园，一个人去万达吃饭看电影。↵↵&nbsp;↵↵他是一个新初三的学生，高高壮壮，但是很害羞，家长将学生作为一个没有自主生活能力的人来看待，生怕他一个人会受骗，会受伤，只要可以，什么都替学生做了。这种表面上的过度保护，实际上掩盖的是对孩子权利的剥夺。↵↵&nbsp;↵↵小宇来的时间不长，还有更多需要我去了解，虽然现在有问题出现了，但是我一点都不害怕，我相信，我所学习到的知识，一定会影响到小宇，影响到小宇的家庭。',
-          num_read: 121,
-          keyword: ["大大", "关键", "小康", "会议"],
-          relevant_articles: [
-            {id: 1, title: "孩子不吃饭怎么办？灌药"},
-            {id: 2, title: "孩子不吃饭怎么办？灌药"},
-            {id: 3, title: "孩子不吃饭怎么办？灌药"}
-          ],
-          status_collect: false
-        }
-      ];
-      this.msg = data[this.$route.query.id - 1];
-      this.msg.riches = this.richesHandle(this.msg.riches);
+      this.getData();
     }
   }
 </script>

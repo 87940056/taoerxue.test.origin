@@ -3,6 +3,7 @@ $img: "/static/images/home-page/";
 .subject {
   width: 100%;
   min-height: 100vh;
+  padding-top: 1.7rem;
   background-color: #fff;
 }
 
@@ -10,8 +11,12 @@ $img: "/static/images/home-page/";
   width: 100%;
   height: 0.97rem;
   padding: 0.2rem 0.4rem;
+  background-color: #fff;
   border-bottom: 1px solid #b2b2b2;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   .return {
     display: block;
     float: left;
@@ -35,12 +40,17 @@ $img: "/static/images/home-page/";
   }
 }
 
-.subject .content {
+.subject .search-box {
   width: 100%;
-  .search-box {
+  background-color: #fff;
+  position: fixed;
+  top: 0.97rem;
+  left: 0;
+  z-index: 10;
+  .search-content {
     width: 7rem;
     height: 0.6rem;
-    margin: 0.2rem auto 0;
+    margin: 0.2rem auto 0.2rem;
     padding: 0 0.4rem;
     border-radius: 0.1rem;
     background-color: #eee;
@@ -70,6 +80,10 @@ $img: "/static/images/home-page/";
       color: #999;
     }
   }
+}
+
+.subject .content {
+  width: 100%;
 }
 
 .subject .no-result {

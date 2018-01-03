@@ -1,5 +1,5 @@
 <template>
-  <div class="institution-details" :class="{'active':status_share}">
+  <div class="institution-details" :class="{'active':status_share||status_service}">
     <ContentDetailsHeader :msg="msg_head" :setCollect="setCollect" :setShare="setShare"></ContentDetailsHeader>
     <div class="banner">
       <img src="/static/images/home-page/institution_detail.jpg" alt="">
@@ -49,7 +49,7 @@
           {{item.name}}
         </div>
       </nav>
-      <router-view :msg="msg_view" v-if="msg_view"></router-view>
+      <router-view :msg="msg_view" v-if="msg_view" parentComponent="institutionDetails"></router-view>
     </div>
     <footer class="customer-server">
       <div class="server-data clearfix">
@@ -59,12 +59,24 @@
           <p class="position">客服</p>
         </div>
       </div>
-      <div class="phone">
+      <div class="phone" @click="setStatus(true)">
         <div class="icon"></div>
         <span>客服电话</span>
       </div>
       <div class="communication">立即沟通</div>
     </footer>
+    <!--弹框-->
+    <div class="contact-service" v-show="status_service" @click="setStatus(false)">
+      <div class="service-content" @click.stop="">
+        <div class="p-box">
+          <p>确定拨打客服电话：400-8000-8000 ？</p>
+        </div>
+        <ul class="select-box">
+          <li class="item" @click="setStatus(false)">取消</li>
+          <li class="item">拨打</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -95,12 +107,16 @@
         server_data: {
           pic: "/static/images/home-page/server.jpg",
           name: "小仙女"
-        }
+        },
+        status_service: false
       }
     },
     methods: {
       setShare: function () {
         this.status_share = !this.status_share;
+      },
+      setStatus: function (para) {
+        this.status_service = para;
       },
       setNav: function (name) {
         router.push({name: name});
@@ -136,6 +152,10 @@
           this.msg_view = this.msg.evaluate;
         }
       },
+      // 长字段处理
+      cutOff: function (fn_str, fn_num) {
+        return fn_str.length > fn_num ? fn_str.slice(0, fn_num) + "..." : fn_str;
+      },
       getData: function () {
         $.ajax({
           type: "post",
@@ -151,7 +171,7 @@
           error: function () {
             var data = {
               code: 0,
-              msg: {
+              data: {
                 id: 111,
                 name: "新东方烹饪学校",
                 pic: "/static/images/home-page/institution.jpg",
@@ -166,112 +186,90 @@
                 courses: [
                   {
                     id: 1,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   },
                   {
-                    id: 2,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    id: 1,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   },
                   {
-                    id: 3,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    id: 1,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   }
                 ],
                 teachers: [
                   {
                     id: 1,
-                    pic: "/static/images/home-page/pic.png",
-                    name: "王小路",
-                    subject: "数学",
-                    seniority: "8",
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路01",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
                     address: "古墩路",
                     distance: "3.7",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                    score: "5.0"
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
                   },
                   {
-                    id: 2,
-                    pic: "/static/images/home-page/pic.png",
-                    name: "陈小路",
-                    subject: "数学",
-                    seniority: "8",
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路01",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
                     address: "古墩路",
                     distance: "3.7",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                    score: "5.0"
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
                   },
                   {
-                    id: 3,
-                    pic: "/static/images/home-page/pic.png",
-                    name: "陈小路",
-                    subject: "数学",
-                    seniority: "8",
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路01",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
                     address: "古墩路",
                     distance: "3.7",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                    score: "5.0"
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
                   },
                   {
-                    id: 4,
-                    pic: "/static/images/home-page/pic.png",
-                    name: "陈小路",
-                    subject: "数学",
-                    seniority: "8",
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路01",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
                     address: "古墩路",
                     distance: "3.7",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                    score: "5.0"
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
                   }
                 ],
                 evaluate: {
@@ -307,18 +305,21 @@
               }
             };
             if (data.code === 0) {
-              this.msg = data.msg;
+              // 长字段处理
+              data.data.courses.forEach((item) => {
+                item.name = this.cutOff(item.name, 12);
+                item.characteristic = this.cutOff(item.characteristic, 34);
+              });
+              data.data.teachers.forEach((item) => {
+                item.description = this.cutOff(item.description, 25);
+              });
+              this.msg = data.data;
               this.content_nav.forEach(function (item) {
                 if (this.$route.name === item.route_name) {
                   this.active = item.id;
                 }
               }.bind(this));
               this.msg_head.status_collect = this.msg.with_me.status_collect;
-            } else {
-              this.active_noResult = true;
-              setTimeout(function () {
-                this.active_noResult = false;
-              }.bind(this), 3000)
             }
           }.bind(this)
         });

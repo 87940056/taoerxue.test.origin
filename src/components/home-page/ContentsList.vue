@@ -30,7 +30,8 @@
       </div>
     </nav>
     <router-view :msg="msg_view" v-if="msg"></router-view>
-    <p class="no-result" v-show="active_noResult">暂无相关搜索结果</p>
+    <p class="no-more" v-show="status_noMore">没有更多</p>
+    <p class="no-result" v-show="status_noResult">暂无相关搜索结果</p>
   </div>
 </template>
 
@@ -43,7 +44,7 @@
       return {
         status_return: false,
         keyword: "",
-        active: 1,
+        active: "",
         msg_nav: [
           {id: 1, path: "/contents-list/subjects-list"},
           {id: 2, path: "/contents-list/courses-list"},
@@ -51,183 +52,616 @@
         ],
         msg: "",
         msg_view: "",
-        active_noResult:false
+        status_noResult: false,
+        withScroll: {
+          viewHeight: 0,
+          height: 0,
+          scrollTop: 0,
+          distance: 100
+        },
+        status_reload: true,
+        status_noMore: false
       }
     },
     methods: {
+      // 回退上一页
       goBack: function () {
         this.status_return = true;
+//        router.push("/search");
         router.go(-1);
       },
+      // tab导航
       setNav: function (path) {
         router.push(path);
       },
+      // 子组件data设置
       setView: function (active) {
         if (active === 1) {
-          this.msg_view = this.msg.subjects;
+          this.msg_view = this.msg.teacherDtoList;
         }
         if (active === 2) {
-          this.msg_view = this.msg.courses;
+          this.msg_view = this.msg.courseDtoList;
         }
         if (active === 3) {
-          this.msg_view = this.msg.institutions;
+          this.msg_view = this.msg.educationList;
         }
       },
-      getData: function (para) {
-        if (this.keyword || para) {
-          $.ajax({
-            type: "post",
-            url: "/search",
-            headers: {
-              Authorization: sessionStorage.token || ""
-            },
-            data: {
-              keyword: this.keyword || para
-            },
-            dataType: "json",
-            success: function (data) {
+      // 长字段处理
+      cutOff: function (fn_str, fn_num) {
+        return fn_str.length > fn_num ? fn_str.slice(0, fn_num) + "..." : fn_str;
+      },
+      getData: function () {
+        $.ajax({
+          type: "post",
+          url: "/search/getSearchList",
+          headers: {
+            Authorization: sessionStorage.token || ""
+          },
+          data: {
+            searchKey: this.keyword,
+            pageNum: 1,
+            pageSize: 6,
+            lng: this.xy.x,
+            lat: this.xy.y
+          },
+          dataType: "json",
+          success: function (data) {
 
-            }.bind(this),
-            error: function () {
-              var data = {
-                code: 0,
-                msg: {
-                  subjects: [
-                    {
-                      id: 1,
-                      pic: "/static/images/home-page/pic.png",
-                      name: "王小路",
-                      subject: "数学",
-                      seniority: "8",
-                      address: "古墩路",
-                      distance: "3.7",
-                      describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                      score: "5.0"
-                    },
-                    {
-                      id: 2,
-                      pic: "/static/images/home-page/pic.png",
-                      name: "陈小路",
-                      subject: "数学",
-                      seniority: "8",
-                      address: "古墩路",
-                      distance: "3.7",
-                      describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                      score: "5.0"
-                    },
-                    {
-                      id: 3,
-                      pic: "/static/images/home-page/pic.png",
-                      name: "陈小路",
-                      subject: "数学",
-                      seniority: "8",
-                      address: "古墩路",
-                      distance: "3.7",
-                      describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                      score: "5.0"
-                    },
-                    {
-                      id: 4,
-                      pic: "/static/images/home-page/pic.png",
-                      name: "陈小路",
-                      subject: "数学",
-                      seniority: "8",
-                      address: "古墩路",
-                      distance: "3.7",
-                      describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
-                      score: "5.0"
-                    }
-                  ],
-                  courses: [
-                    {
-                      id: 1,
-                      name: "棒棒的音乐课",
-                      pic: "/static/images/home-page/course.jpg",
-                      subject: "音乐",
-                      class_hour: 3,
-                      price: "360.00",
-                      describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
-                      score: "5.0",
-                      students_num: 123,
-                      teacher: [
-                        {id: 122, name: "王小剑", pic: "/static/images/home-page/pic.png"},
-                        {id: 122, name: "王小剑", pic: "/static/images/home-page/pic.png"}
-                      ]
-                    },
-                    {
-                      id: 2,
-                      name: "棒棒的音乐课",
-                      pic: "/static/images/home-page/course.jpg",
-                      subject: "音乐",
-                      class_hour: 3,
-                      price: "360.00",
-                      describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
-                      score: "5.0",
-                      students_num: 123,
-                      teacher: [
-                        {id: 122, name: "王小剑", pic: "/static/images/home-page/pic.png"},
-                        {id: 122, name: "王小剑", pic: "/static/images/home-page/pic.png"}
-                      ]
-                    },
-                    {
-                      id: 3,
-                      name: "棒棒的音乐课",
-                      pic: "/static/images/home-page/course.jpg",
-                      subject: "音乐",
-                      class_hour: 3,
-                      price: "360.00",
-                      describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
-                      score: "5.0",
-                      students_num: 123,
-                      teacher: [
-                        {id: 122, name: "王小剑", pic: "/static/images/home-page/pic.png"},
-                        {id: 122, name: "王小剑", pic: "/static/images/home-page/pic.png"}
-                      ]
-                    }
-                  ],
-                  institutions: [
-                    {
-                      id: 1,
-                      name: "神隐琴行",
-                      subject: ["音乐"],
-                      teacher_num: 18,
-                      address: "杭州市拱墅区祥园路39号",
-                      pic: "/static/images/home-page/institution.jpg"
-                    },
-                    {
-                      id: 2,
-                      name: "神隐琴行",
-                      subject: ["音乐", "数学", "语文"],
-                      teacher_num: 18,
-                      address: "杭州市拱墅区祥园路39号",
-                      pic: "/static/images/home-page/institution.jpg"
-                    },
-                    {
-                      id: 3,
-                      name: "神隐琴行",
-                      subject: ["音乐", "语文"],
-                      teacher_num: 18,
-                      address: "杭州市拱墅区祥园路39号",
-                      pic: "/static/images/home-page/institution.jpg"
-                    }
-                  ]
-                }
-              };
-              if (data.code === 0) {
-                this.msg = data.msg;
-                this.setView(this.active);
-              } else {
-                this.active_noResult = true;
-                setTimeout(function () {
-                  this.active_noResult = false;
-                }.bind(this), 5000)
+          }.bind(this),
+          error: function () {
+            var data = {
+              code: 0,
+              data: {
+                teacherDtoList: [
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路01",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  },
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路02",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  },
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路03",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  },
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路04",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  },
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路05",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  },
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路06",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  },
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路07",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  },
+                  {
+                    id: 1,
+                    photo: "/static/images/home-page/pic.png",
+                    name: "王小路08",
+                    parentTypeName: "数学",
+                    experienceAge: "8",
+                    address: "古墩路",
+                    distance: "3.7",
+                    description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+                  }
+                ],
+                courseDtoList: [
+                  {
+                    id: 1,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
+                    price: "360.00",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    score: "5.0",
+                    collections: 123,
+                    teacher: [
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                    ]
+                  },
+                  {
+                    id: 2,
+                    name: "棒棒的音乐课02",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
+                    price: "360.00",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    score: "5.0",
+                    collections: 123,
+                    teacher: [
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                    ]
+                  },
+                  {
+                    id: 3,
+                    name: "棒棒的音乐课03",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
+                    price: "360.00",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    score: "5.0",
+                    collections: 123,
+                    teacher: [
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                    ]
+                  },
+                  {
+                    id: 3,
+                    name: "棒棒的音乐课04",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
+                    price: "360.00",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    score: "5.0",
+                    collections: 123,
+                    teacher: [
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                    ]
+                  },
+                  {
+                    id: 3,
+                    name: "棒棒的音乐课05",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
+                    price: "360.00",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    score: "5.0",
+                    collections: 123,
+                    teacher: [
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                    ]
+                  },
+                  {
+                    id: 3,
+                    name: "棒棒的音乐课06",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
+                    price: "360.00",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    score: "5.0",
+                    collections: 123,
+                    teacher: [
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                    ]
+                  },
+                ],
+                educationList: [
+                  {
+                    id: 1,
+                    name: "神隐琴行01",
+                    subject: ["音乐"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  },
+                  {
+                    id: 2,
+                    name: "神隐琴行02",
+                    subject: ["音乐", "数学", "语文"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  },
+                  {
+                    id: 3,
+                    name: "神隐琴行03",
+                    subject: ["音乐", "语文"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  },
+                  {
+                    id: 3,
+                    name: "神隐琴行04",
+                    subject: ["音乐", "语文"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  },
+                  {
+                    id: 3,
+                    name: "神隐琴行05",
+                    subject: ["音乐", "语文"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  },
+                  {
+                    id: 3,
+                    name: "神隐琴行06",
+                    subject: ["音乐", "语文"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  },
+                  {
+                    id: 3,
+                    name: "神隐琴行07",
+                    subject: ["音乐", "语文"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  },
+                  {
+                    id: 3,
+                    name: "神隐琴行08",
+                    subject: ["音乐", "语文"],
+                    teacherNum: 18,
+                    address: "杭州市拱墅区祥园路39号",
+                    photo: "/static/images/home-page/institution.jpg"
+                  }
+                ]
               }
-            }.bind(this)
-          });
-        } else {
-          console.log("no keyword");
-        }
+            };
+            if (data.code === 0) {
+              // 长字段处理
+              data.data.teacherDtoList.forEach((item) => {
+                item.description = this.cutOff(item.description, 25);
+              });
+              data.data.courseDtoList.forEach((item) => {
+                item.name = this.cutOff(item.name, 12);
+                item.characteristic = this.cutOff(item.characteristic, 34);
+              });
+              this.status_noResult = false;
+              this.msg = data.data;
+              // 子组件data设置
+              this.msg_nav.forEach(function (item) {
+                if (this.$route.path === item.path) {
+                  this.active = item.id;
+                }
+              }.bind(this));
+            } else {
+              this.status_noResult = true;
+            }
+          }.bind(this)
+        });
       },
+      // 下拉加载
+      reload: function (fn_url) {
+        $.ajax({
+          type: "post",
+          url: fn_url,
+          headers: {
+            Authorization: sessionStorage.token || ""
+          },
+          data: {
+            keyword: this.keyword
+          },
+          dataType: "json",
+          success: function (data) {
+
+          }.bind(this),
+          error: function () {
+            var data = {
+              code: 0,
+//              data: [
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路01",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                },
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路02",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                },
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路03",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                },
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路04",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                },
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路05",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                },
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路06",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                },
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路07",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                },
+//                {
+//                  id: 1,
+//                  photo: "/static/images/home-page/pic.png",
+//                  name: "王小路08",
+//                  parentTypeName: "数学",
+//                  experienceAge: "8",
+//                  address: "古墩路",
+//                  distance: "3.7",
+//                  description: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的老师",
+//                }
+//              ]
+              data: [
+                {
+                  id: 1,
+                  name: "棒棒的音乐课01棒棒的音乐课01棒棒的音乐课01",
+                  photo: "/static/images/home-page/course.jpg",
+                  typeName: "音乐",
+                  classTotal: 3,
+                  price: "360.00",
+                  characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                  score: "5.0",
+                  collections: 123,
+                  teacher: [
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                  ]
+                },
+                {
+                  id: 2,
+                  name: "棒棒的音乐课02",
+                  photo: "/static/images/home-page/course.jpg",
+                  typeName: "音乐",
+                  classTotal: 3,
+                  price: "360.00",
+                  characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                  score: "5.0",
+                  collections: 123,
+                  teacher: [
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                  ]
+                },
+                {
+                  id: 3,
+                  name: "棒棒的音乐课03",
+                  photo: "/static/images/home-page/course.jpg",
+                  typeName: "音乐",
+                  classTotal: 3,
+                  price: "360.00",
+                  characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                  score: "5.0",
+                  collections: 123,
+                  teacher: [
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                  ]
+                },
+                {
+                  id: 3,
+                  name: "棒棒的音乐课04",
+                  photo: "/static/images/home-page/course.jpg",
+                  typeName: "音乐",
+                  classTotal: 3,
+                  price: "360.00",
+                  characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                  score: "5.0",
+                  collections: 123,
+                  teacher: [
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                  ]
+                },
+                {
+                  id: 3,
+                  name: "棒棒的音乐课05",
+                  photo: "/static/images/home-page/course.jpg",
+                  typeName: "音乐",
+                  classTotal: 3,
+                  price: "360.00",
+                  characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                  score: "5.0",
+                  collections: 123,
+                  teacher: [
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                  ]
+                },
+                {
+                  id: 3,
+                  name: "棒棒的音乐课06",
+                  photo: "/static/images/home-page/course.jpg",
+                  typeName: "音乐",
+                  classTotal: 3,
+                  price: "360.00",
+                  characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                  score: "5.0",
+                  collections: 123,
+                  teacher: [
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                    {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
+                  ]
+                },
+              ]
+//              data: [
+//                {
+//                  id: 1,
+//                  name: "神隐琴行01",
+//                  subject: ["音乐"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                },
+//                {
+//                  id: 2,
+//                  name: "神隐琴行02",
+//                  subject: ["音乐", "数学", "语文"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                },
+//                {
+//                  id: 3,
+//                  name: "神隐琴行03",
+//                  subject: ["音乐", "语文"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                },
+//                {
+//                  id: 3,
+//                  name: "神隐琴行04",
+//                  subject: ["音乐", "语文"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                },
+//                {
+//                  id: 3,
+//                  name: "神隐琴行05",
+//                  subject: ["音乐", "语文"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                },
+//                {
+//                  id: 3,
+//                  name: "神隐琴行06",
+//                  subject: ["音乐", "语文"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                },
+//                {
+//                  id: 3,
+//                  name: "神隐琴行07",
+//                  subject: ["音乐", "语文"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                },
+//                {
+//                  id: 3,
+//                  name: "神隐琴行08",
+//                  subject: ["音乐", "语文"],
+//                  teacherNum: 18,
+//                  address: "杭州市拱墅区祥园路39号",
+//                  photo: "/static/images/home-page/institution.jpg"
+//                }
+//              ]
+            };
+            if (data.code === 0) {
+              this.status_noResult = false;
+              if (this.active === 1) {
+                this.msg.teacherDtoList = this.msg.teacherDtoList.concat(data.data);
+              }
+              if (this.active === 2) {
+                data.data.forEach((item) => {
+                  item.name = this.cutOff(item.name, 10);
+                });
+                data.data.forEach((item) => {
+                  item.characteristic = this.cutOff(item.characteristic, 34);
+                });
+                this.msg.courseDtoList = this.msg.courseDtoList.concat(data.data);
+              }
+              if (this.active === 3) {
+                this.msg.educationList = this.msg.educationList.concat(data.data);
+              }
+              this.setView(this.active);
+              this.status_reload = true;
+            } else {
+              this.status_noMore = true;
+            }
+          }.bind(this)
+        });
+      },
+      // 搜索
       search: function () {
         if (this.keyword) {
           $(".contents-list header input").blur();
@@ -235,12 +669,43 @@
         } else {
           console.log("no keyword");
         }
+      },
+      // 滑动处理
+      scroll: function () {
+        this.withScroll.viewHeight = $(window).height();
+        this.withScroll.height = $("html").height();
+        this.withScroll.scrollTop = $(window).scrollTop();
+        if (this.reloadLine < 0) {
+          if (this.status_reload) {
+            this.status_reload = false;
+            this.reload(this.reloadUrl);
+          }
+        }
+      }
+    },
+    computed: {
+      reloadLine: function () {
+        return this.withScroll.height - this.withScroll.viewHeight - this.withScroll.scrollTop - this.withScroll.distance;
+      },
+      reloadUrl: function () {
+        if (this.active === 1) {
+          return "/search/getSearchTeacherList";
+        }
+        if (this.active === 2) {
+          return "/search/getSearchCourseList";
+        }
+        if (this.active === 3) {
+          return "/search/getSearchEducationList";
+        }
+      },
+      xy: function () {
+        return JSON.parse(sessionStorage.xy)
       }
     },
     watch: {
       "$route": function () {
         this.msg_nav.forEach(function (item) {
-          if (this.$route.path == item.path) {
+          if (this.$route.path === item.path) {
             this.active = item.id;
           }
         }.bind(this));
@@ -257,13 +722,14 @@
       }
     },
     created: function () {
-      this.msg_nav.forEach(function (item) {
-        if (this.$route.path == item.path) {
-          this.active = item.id;
-        }
-      }.bind(this));
       this.keyword = this.$route.query.keyword || "";
-      this.getData("default");
+      this.getData();
+    },
+    mounted: function () {
+      $(window).scroll(this.scroll);
+    },
+    beforeDestroy: function () {
+      $(window).off("scroll", this.scroll);
     }
   }
 </script>

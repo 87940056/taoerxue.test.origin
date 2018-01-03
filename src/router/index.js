@@ -10,6 +10,7 @@ import PersonalCenter from '@/components/personal-center/PersonalCenter'
 import ShoppingCart from '@/components/func-components/ShoppingCart'
 import Payment from '@/components/func-components/Payment'
 import DataSet from '@/components/func-components/DataSet'
+import Commenting from '@/components/func-components/Commenting'
 
 //home-page
 import Location from '@/components/home-page/Location'
@@ -37,7 +38,6 @@ import DownLoadManagement from '@/components/home-page/DownLoadManagement'
 //information
 import InformationDetails from '@/components/information/InformationDetails'
 import InformationComments from '@/components/information/InformationComments'
-import InformationCommenting from '@/components/information/InformationCommenting'
 
 //shopping-mail
 import GoodsDetails from '@/components/shopping-mail/GoodsDetails'
@@ -59,6 +59,7 @@ import GroupData from '@/components/message/GroupData'
 //personal-center
 import PersonalData from '@/components/personal-center/PersonalData'
 import MyCourses from '@/components/personal-center/MyCourses'
+import MyCourseDetails from '@/components/personal-center/MyCourseDetails'
 import MyOrders from '@/components/personal-center/MyOrders'
 import KidsArchiveList from '@/components/personal-center/KidsArchiveList'
 import KidData from '@/components/personal-center/KidData'
@@ -311,11 +312,6 @@ export default new Router({
       name: 'InformationComments',
       component: InformationComments
     },
-    {
-      path: '/information-commenting',
-      name: 'InformationCommenting',
-      component: InformationCommenting
-    },
     //shoppingMail--------------------------------------------------------------------
     {
       path: '/shopping-mail',
@@ -352,6 +348,11 @@ export default new Router({
       path: '/my-courses',
       name: 'MyCourses',
       component: MyCourses
+    },
+    {
+      path: '/my-course-details',
+      name: 'MyCourseDetails',
+      component: MyCourseDetails
     },
     {
       path: '/my-orders',
@@ -464,6 +465,11 @@ export default new Router({
       path: '/data-set/:type/:id',
       name: 'DataSet',
       component: DataSet
-    }
+    },
+    {
+      path: '/commenting',
+      name: 'Commenting',
+      component: Commenting
+    },
   ]
 })

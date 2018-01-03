@@ -1,12 +1,12 @@
-$img: "/static/images/information/";
+$img: "/static/images/others/";
 
-.information-commenting {
+.commenting {
   width: 100%;
   height: 100vh;
   position: relative;
 }
 
-.information-commenting header {
+.commenting header {
   width: 100%;
   height: 0.97rem;
   padding: 0.2rem 0.4rem;
@@ -41,7 +41,7 @@ $img: "/static/images/information/";
   }
 }
 
-.information-commenting textarea {
+.commenting textarea {
   width: 100%;
   height: 4.4rem;
   margin-top: 0.1rem;
@@ -50,7 +50,7 @@ $img: "/static/images/information/";
   color: #9b9b9b;
   line-height: 0.38rem;
 }
-.information-commenting .hint{
+.commenting .hint{
   width: 100%;
   margin-top: -0.68rem;
   padding-right: 0.4rem;
@@ -60,7 +60,7 @@ $img: "/static/images/information/";
   text-align: right;
 }
 
-.information-commenting .submission{
+.commenting .submission{
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 0.1rem;

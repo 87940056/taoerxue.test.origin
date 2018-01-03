@@ -55,21 +55,11 @@ $img: "/static/images/personal-center/";
         color: #333;
         line-height: 0.34rem;
       }
-      .status {
-        margin-top: 0.2rem;
+      .subject-status {
+        width: 4rem;
+        margin-top: 0.48rem;
       }
-      .status p {
-        font-size: 0.2rem;
-        color: #a8a8a8;
-        line-height: 0.2rem;
-      }
-      .status p:nth-child(2) {
-        margin-top: 0.05rem;
-      }
-      .subject-teacher {
-        margin-top: 0.18rem;
-      }
-      .subject-teacher .subject-name {
+      .subject-status .subject-name {
         float: left;
         width: 0.7rem;
         padding: 0.02rem 0;
@@ -80,12 +70,22 @@ $img: "/static/images/personal-center/";
         line-height: 0.2rem;
         text-align: center;
       }
-      .subject-teacher .teacher {
-        float: left;
+      .subject-status .status {
+        float: right;
         margin-left: 0.34rem;
         font-size: 0.2rem;
-        color: #ffbf0d;
+        color: #a8a8a8;
         line-height: 0.24rem;
+      }
+      .progress-bar{
+        width: 4rem;
+        height: 0.02rem;
+        margin-top: 0.2rem;
+        background-color: #E8E9EA;
+      }
+      .progress-bar .progress{
+        height: 100%;
+        background-color: #8AC5FA;
       }
     }
   }

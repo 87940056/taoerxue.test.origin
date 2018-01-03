@@ -1,9 +1,9 @@
 <template>
-  <div class="information-commenting">
+  <div class="commenting">
     <header>
       <div class="return" @click="goBack()"></div>
       <span class="num" @click="submit()">提交</span>
-      <p>热门评论</p>
+      <p>写评论</p>
     </header>
     <textarea spellcheck="false" :placeholder="placeholder"
               @input="setNumWords()"
@@ -17,7 +17,7 @@
 
 <script>
   import router from "@/router/index"
-  import "../../assets/style/information/information-commenting.scss";
+  import "../../assets/style/func-components/commenting.scss";
   export default{
     name: "InformationCommenting",
     data(){
@@ -34,7 +34,7 @@
       submit: function () {
         if (this.num_words > 0 && this.num_words <= 140) {
           this.submission_status = true;
-          document.querySelector(".information-commenting textarea").value = "";
+          document.querySelector(".commenting textarea").value = "";
           setTimeout(function () {
             this.submission_status = false;
           }.bind(this), 1000)
@@ -45,7 +45,7 @@
         }
       },
       setNumWords: function () {
-        this.num_words = document.querySelector(".information-commenting textarea").value.length;
+        this.num_words = document.querySelector(".commenting textarea").value.length;
       },
       setPlaceholder: function (type) {
         this.placeholder = type ? "写点什么吧..." : "";

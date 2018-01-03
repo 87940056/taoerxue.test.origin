@@ -3,6 +3,7 @@ $img: "/static/images/home-page/";
 .contents-list {
   width: 100%;
   min-height: 100vh;
+  padding-top: 1.77rem;
   background-color: #fff;
 }
 
@@ -10,7 +11,12 @@ $img: "/static/images/home-page/";
   width: 100%;
   height: 0.97rem;
   padding: 0 0.4rem;
+  background-color: #fff;
   border-bottom: 1px solid #b2b2b2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   .return {
@@ -55,7 +61,12 @@ $img: "/static/images/home-page/";
 .contents-list nav {
   width: 100%;
   height: 0.8rem;
+  background-color: #fff;
   border-bottom: 0.1rem solid #efefef;
+  position: fixed;
+  top: 0.97rem;
+  left: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   .item {
@@ -76,8 +87,15 @@ $img: "/static/images/home-page/";
   }
 }
 
+.contents-list p.no-more {
+  padding: 0.2rem 0;
+  font-size: 0.34rem;
+  color: #333434;
+  line-height: 0.34rem;
+  text-align: center;
+}
 
-.contents-list .no-result {
+.contents-list p.no-result {
   margin-top: 0.5rem;
   font-size: 0.34rem;
   color: #333434;

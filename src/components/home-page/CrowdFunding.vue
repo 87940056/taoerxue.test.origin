@@ -9,13 +9,13 @@
       <div class="teacher-box">
         <p class="title">讲师</p>
         <div class="teacher clearfix">
-          <img :src="msg.teacher.pic" alt="" class="pic">
+          <img :src="msg.teacherPhoto" alt="" class="pic">
           <div class="pic-right">
             <div class="name-box clearfix">
-              <p class="name">{{msg.teacher.name}}</p>
+              <p class="name">{{msg.teacherName}}</p>
               <div class="gold-medal"></div>
             </div>
-            <p class="describe">{{msg.teacher.describe}}</p>
+            <p class="describe">{{msg.teacherBrief}}</p>
           </div>
           <router-link class="mask" to="/teacher-details/courses"></router-link>
         </div>
@@ -31,21 +31,24 @@
         </li>
         <li class="info-item">
           <div class="icon"></div>
-          <span>目标金额：￥{{msg.price}}</span>
+          <span>目标金额：￥{{msg.targetPrice}}</span>
         </li>
       </ul>
       <div class="schedule">
         <div class="part-one clearfix">
-          <span class="existing">已筹款：￥{{msg.schedule.existing}}</span>
-          <span class="proportion">进度：{{msg.schedule.proportion}}</span>
+          <span class="existing">已筹款：￥{{msg.raisedMoney}}</span>
+          <span class="proportion">进度：{{msg_proportion}}</span>
         </div>
         <div class="progress-bar">
-          <div :style="`width:${msg.schedule.proportion}`"></div>
+          <div :style="`width:${msg_proportion}`"></div>
         </div>
         <div class="part-two clearfix">
-          <span class="num-support">支持人数：{{msg.schedule.num_support}}</span>
-          <span class="days-remaining">剩余天数：{{msg.schedule.days_remaining}}</span>
+          <span class="num-support">支持人数：{{msg.raisedNumber}}</span>
+          <span class="days-remaining">剩余天数：{{msg.daysRemaining}}</span>
         </div>
+      </div>
+      <div class="plan-box">
+        <p class="title">课程计划</p>
       </div>
     </div>
     <footer>
@@ -74,28 +77,12 @@
           link_return: "/",
           link: ""
         },
-        msg: {
-          name: "天寒社硬笔书法课程",
-          time: "2017-11-15 19:00-21:00",
-          address: "杭州市余杭区梦想小镇天使村6-202",
-          price: "30000",
-          schedule: {
-            existing: "18000",
-            proportion: "60%",
-            num_support: 60,
-            days_remaining: 12
-          },
-          teacher: {
-            id: 122,
-            name: "王丽丽",
-            pic: "/static/images/home-page/pic.png",
-            describe: "全国最好的书法老师"
-          },
-          with_me: {
-            status_own: false,
-            status_collect: false
-          }
-        }
+        msg: ""
+      }
+    },
+    computed: {
+      msg_proportion: function () {
+        return Math.round((this.msg.raisedNumber / this.msg.targetNumber) * 100) + "%";
       }
     },
     methods: {
@@ -103,15 +90,16 @@
         this.status_share = !this.status_share;
       },
       setCollect: function () {
-        this.msg.with_me.status_collect = !this.msg.with_me.status_collect;
+        this.msg.withMe.status_collect = !this.msg.withMe.status_collect;
         this.setHead();
       },
       setHead: function () {
-        this.msg_head.status_collect = this.msg.with_me.status_collect;
+        this.msg_head.status_collect = this.msg.withMe.status_collect;
       }
     },
     created: function () {
-      this.msg_head.status_collect = this.msg.with_me.status_collect;
+      this.msg = JSON.parse(sessionStorage.msg_crowdFunding)[0];
+      this.msg_head.status_collect = this.msg.withMe.status_collect;
     }
   }
 </script>

@@ -109,7 +109,7 @@ $img: "/static/images/home-page/";
   .schedule {
     width: 100%;
     margin-top: 0.2rem;
-    padding: 0 0.24rem 0.5rem;
+    padding: 0 0.24rem 0.2rem;
     .part-one {
       width: 100%;
       span {
@@ -148,6 +148,18 @@ $img: "/static/images/home-page/";
         }
       }
     }
+  }
+  .plan-box {
+     width: 100%;
+     border-bottom: 1px solid #e5e5e5;
+   }
+  .plan-box .title {
+    width: 100%;
+    padding: 0.08rem 0 0.08rem 0.37rem;
+    background-color: #efefef;
+    font-size: 0.26rem;
+    color: #333;
+    line-height: 0.26rem;
   }
 }
 

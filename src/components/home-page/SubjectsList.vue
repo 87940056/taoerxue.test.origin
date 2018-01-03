@@ -2,16 +2,16 @@
   <ul class="subjects-list">
     <li class="item" v-for="item in msg">
       <div class="content">
-        <img class="pic" v-lazy="item.pic">
+        <img class="pic" v-lazy="item.photo">
         <div class="details">
           <p class="name">{{item.name}}</p>
           <div class="others">
-            <div class="subject-name">{{item.subject}}</div>
+            <div class="subject-name">{{item.parentTypeName}}</div>
             <div class="seniority">
-              <span>{{item.seniority}}</span>
+              <span>{{item.experienceAge}}</span>
               <span>年教龄</span>
             </div>
-            <div class="address-box">
+            <div class="address-box" v-if="!(parentComponent==='institutionDetails')">
               <div class="icon"></div>
               <span class="address">{{item.address}}</span>
               <span>{{item.distance}}</span>
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <p class="describe">{{item.describe}}</p>
+      <p class="describe">{{item.description}}</p>
       <!--<div class="score">-->
         <!--<span>{{item.score}}</span>-->
         <!--<span>分</span>-->
@@ -34,7 +34,7 @@
   import "../../assets/style/home-page/subjects-list.scss";
   export default{
     name: "SubjectsList",
-    props: ["msg"],
+    props: ["msg","parentComponent"],
     data(){
       return {}
     }

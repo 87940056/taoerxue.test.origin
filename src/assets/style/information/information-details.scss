@@ -86,6 +86,13 @@ $img: "/static/images/information/";
   .html-box {
     width: 100%;
     margin-top: 0.3rem;
+    img{
+      display: block;
+      //margin: 0 auto;
+      max-width: 100% !important;
+      height: auto !important;
+      //transform: scale(0.5,0.5);
+    }
   }
   .content-bottom {
     width: 100%;

@@ -2,7 +2,7 @@
   <div class="content-details-header">
     <div class="return" @click="goBack()"></div>
     <div class="share" @click="setShare_()"></div>
-    <div class="collect" :class="{'active':msg.status_collect}" @click="setCollect()"></div>
+    <div class="collect" :class="{'active':msg.status_collect}" @click="setCollect()" v-show="!(msg.status_collect===null)"></div>
     <p class="title">{{msg.title}}</p>
     <div class="shadow" v-show="status_share">
       <div class="occupy" @click="setShare_()"></div>

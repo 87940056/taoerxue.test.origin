@@ -62,8 +62,8 @@
             <span>节</span>
           </li>
           <li class="item">
-            <span>好评：</span>
-            <span>{{msg.teacher.praiseRate}}</span>
+            <!--<span>好评：</span>-->
+            <!--<span>{{msg.teacher.praiseRate}}</span>-->
           </li>
         </ul>
         <router-link class="mask" :to="`/teacher-details/courses?id=${msg.teacher.id}`"></router-link>
@@ -81,9 +81,9 @@
         <router-link class="mask" to="/institution-details/courses-list?id=122"></router-link>
       </div>
     </div>
-    <!--<div class="course-introduce">-->
-    <!--<div class="info-title">课程介绍</div>-->
-    <!--</div>-->
+    <div class="course-introduce">
+      <div class="info-title">课程介绍</div>
+    </div>
     <div class="course-evaluate">
       <div class="info-title">课程评价</div>
       <Evaluate :msg="msg.evaluate"></Evaluate>

@@ -9,16 +9,15 @@
         <img v-lazy="item.pic" alt="" class="pic">
         <div class="pic-right">
           <p class="name">{{item.name}}</p>
-          <div class="status">
-            <p>{{item.status}}</p>
-            <p>时间：{{item.time}}</p>
-          </div>
-          <div class="subject-teacher clearfix">
+          <div class="subject-status clearfix">
             <p class="subject-name">{{item.subject}}</p>
-            <p class="teacher">{{item.teacher}}</p>
+            <p class="status">{{item.status}}</p>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" :style="'width:'+item.progress"></div>
           </div>
         </div>
-        <router-link class="mask" to="/course-details/content"></router-link>
+        <router-link class="mask" to="/my-course-details"></router-link>
       </li>
     </ul>
   </div>
@@ -59,29 +58,32 @@
                 {
                   id: 1,
                   name: "厉害极了的舞蹈课",
-                  status: "待上课",
+                  status: "已结束",
                   time: "2017-11-12",
                   subject: "美术",
                   teacher: "王老师",
-                  pic: "/static/images/personal-center/course_pic.png"
+                  pic: "/static/images/personal-center/course_pic.png",
+                  progress: "100%"
                 },
                 {
                   id: 1,
                   name: "厉害极了的舞蹈课",
-                  status: "待上课",
+                  status: "进行中",
                   time: "2017-11-12",
                   subject: "美术",
                   teacher: "王老师",
-                  pic: "/static/images/personal-center/course_pic.png"
+                  pic: "/static/images/personal-center/course_pic.png",
+                  progress: "60%"
                 },
                 {
                   id: 1,
                   name: "厉害极了的舞蹈课",
-                  status: "待上课",
+                  status: "进行中",
                   time: "2017-11-12",
                   subject: "美术",
                   teacher: "王老师",
-                  pic: "/static/images/personal-center/course_pic.png"
+                  pic: "/static/images/personal-center/course_pic.png",
+                  progress: "60%"
                 }
               ]
             };
@@ -93,7 +95,7 @@
       }
     },
     created: function () {
-        this.getData();
+      this.getData();
     }
   }
 </script>

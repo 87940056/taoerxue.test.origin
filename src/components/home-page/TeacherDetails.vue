@@ -1,43 +1,55 @@
 <template>
-  <div class="teacher-details" :class="{'active':status_share}">
+  <div class="teacher-details" :class="{'active':status_share||status_service}">
     <ContentDetailsHeader :msg="msg_head" :setCollect="setCollect" :setShare="setShare"></ContentDetailsHeader>
     <div class="banner">
       <img src="/static/images/home-page/teacher_banner.jpg" alt="">
     </div>
     <div class="teacher-info">
       <div class="base-info">
-        <img :src="msg.pic" alt="" class="pic">
+        <img :src="msg.photo" alt="" class="pic">
         <div class="text-content">
           <p class="name">{{msg.name}}</p>
           <div class="span-box clearfix">
-            <span class="teacher-type">{{msg.teacher_type}}</span>
+            <span class="teacher-type">{{msg.typeName}}</span>
             <div></div>
-            <span class="seniority">{{msg.seniority}}</span>
+            <span class="seniority">{{msg.experienceAge}}</span>
             <span>教龄</span>
           </div>
         </div>
       </div>
       <div class="profile">
         <p class="profile-title">个人简介</p>
-        <p class="profile-content">{{msg.profile}}</p>
+        <p class="profile-content">{{msg.description}}</p>
       </div>
     </div>
     <ul class="teacher-achievement">
       <li class="item">
         <span>学生：</span>
-        <span>{{msg.students_num}}</span>
+        <span>{{msg.studentsCount}}</span>
         <span>人</span>
       </li>
       <li class="item">
         <span>课程：</span>
-        <span>{{msg.courses_num}}</span>
+        <span>{{msg.courseCount}}</span>
         <span>节</span>
       </li>
       <li class="item">
-        <span>好评：</span>
-        <span>{{msg.praise_rate}}</span>
+        <!--<span>好评：</span>-->
+        <!--<span>{{msg.praiseRate}}</span>-->
       </li>
     </ul>
+    <div class="institution-info">
+      <div class="info-title">所属机构</div>
+      <div class="info-content clearfix">
+        <img :src="msg.institution_pic" alt="" class="pic">
+        <div class="pic-right">
+          <p class="name">{{msg.institution_name}}</p>
+          <p class="describe">{{msg.institution_describe}}</p>
+        </div>
+        <div class="go-details"></div>
+        <router-link class="mask" to="/institution-details/courses-list?id=122"></router-link>
+      </div>
+    </div>
     <div class="nav-box">
       <nav>
         <div class="item"
@@ -50,12 +62,24 @@
       <router-view :msg="msg_view" v-if="msg_view"></router-view>
     </div>
     <footer>
-      <div class="phone">
+      <div class="phone" @click="setStatus(true)">
         <div class="icon"></div>
         <span>拨打电话</span>
       </div>
       <div class="communication">立即沟通</div>
     </footer>
+    <!--弹框-->
+    <div class="contact-service" v-show="status_service" @click="setStatus(false)">
+      <div class="service-content" @click.stop="">
+        <div class="p-box">
+          <p>确定拨打客服电话：400-8000-8000 ？</p>
+        </div>
+        <ul class="select-box">
+          <li class="item" @click="setStatus(false)">取消</li>
+          <li class="item">拨打</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -83,22 +107,26 @@
         msg_nav: [
           {id: 1, name: "课程", route_name: "CoursesInTDetails"},
           {id: 2, name: "评价", route_name: "EvaluateInTDetails"}
-        ]
+        ],
+        status_service: false
       }
     },
     methods: {
       setShare: function () {
         this.status_share = !this.status_share;
       },
+      setStatus: function (para) {
+        this.status_service = para;
+      },
       setNav: function (name) {
         router.push({name: name});
       },
       setCollect: function () {
-        this.msg.with_me.status_collect = !this.msg.with_me.status_collect;
+        this.msg.withMe.status_collect = !this.msg.withMe.status_collect;
         this.setHead();
       },
       setHead: function () {
-        this.msg_head.status_collect = this.msg.with_me.status_collect;
+        this.msg_head.status_collect = this.msg.withMe.status_collect;
       },
       setStars: function (score) {
         var num = Math.ceil(score),
@@ -114,21 +142,25 @@
       },
       setView: function (active) {
         if (active === 1) {
-          this.msg_view = this.msg.courses;
+          this.msg_view = this.msg.course;
         }
         if (active === 2) {
           this.msg_view = this.msg.evaluate;
         }
       },
+      // 长字段处理
+      cutOff: function (fn_str, fn_num) {
+        return fn_str.length > fn_num ? fn_str.slice(0, fn_num) + "..." : fn_str;
+      },
       getData: function () {
         $.ajax({
           type: "post",
-          url: "/search",
+          url: "/teacher/detail",
           headers: {
             Authorization: sessionStorage.token || ""
           },
           data: {
-            keyword: this.keyword
+            id: 122
           },
           dataType: "json",
           success: function (data) {
@@ -137,81 +169,67 @@
           error: function () {
             var data = {
               code: 0,
-              msg: {
+              data: {
                 id: 112,
                 name: "王丽丽",
-                pic: "/static/images/home-page/pic.png",
-                teacher_type: "书法老师",
-                seniority: "5年",
-                profile: "书法是中国传统文化的重要组成部分，书法是中国传统文化的重要组成部分，书法是中国传统文化的重要组成部分,传统文化的重要组成部分。",
-                students_num: 123,
-                courses_num: 36,
-                praise_rate: "90%",
-                with_me: {
-                  status_collect: true
+                photo: "/static/images/home-page/pic.png",
+                parentTypeName: "国学",
+                typeName: "书法",
+                experienceAge: "5年",
+                description: "书法是中国传统文化的重要组成部分，书法是中国传统文化的重要组成部分，书法是中国传统文化的重要组成部分，传统文化的重要组成部分。",
+                studentsCount: 123,
+                courseCount: 36,
+                praiseRate: "90%",
+                withMe: {
+                  status_collect: false
                 },
-                courses: [
+                institution_pic: "/static/images/home-page/institution.jpg",
+                institution_name: "王老师工作室",
+                institution_describe: "在很远很远很远很远很远很远很远很远的地方",
+                course: [
                   {
                     id: 1,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   },
                   {
-                    id: 2,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    id: 1,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   },
                   {
-                    id: 3,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    id: 1,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   }
                 ],
@@ -248,13 +266,18 @@
               }
             };
             if (data.code === 0) {
-              this.msg = data.msg;
+              // 长字段处理
+              data.data.course.forEach((item) => {
+                item.name = this.cutOff(item.name, 12);
+                item.characteristic = this.cutOff(item.characteristic, 34);
+              });
+              this.msg = data.data;
               this.msg_nav.forEach(function (item) {
                 if (this.$route.name === item.route_name) {
                   this.active = item.id;
                 }
               }.bind(this));
-              this.msg_head.status_collect = this.msg.with_me.status_collect;
+              this.msg_head.status_collect = null;
             }
           }.bind(this)
         });

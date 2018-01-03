@@ -2,12 +2,10 @@
   <div class="subjects">
     <header>
       <div class="return" @click="goBack()"></div>
-      <div class="search">
-        <div class="icon" @click="search()"></div>
-        <input class="pingfang-R"
-               type="text" placeholder="搜索科目/课程/机构"
-               v-model="keyword"
-               @keydown="inputMonitor($event)">
+      <div class="search-button">
+        <div class="icon"></div>
+        <input class="pingfang-R" type="text" placeholder="搜索科目/课程/机构">
+        <router-link to="/search" class="mask"></router-link>
       </div>
     </header>
     <ul class="content">
@@ -27,7 +25,6 @@
     name: "CourseCategory",
     data(){
       return {
-        keyword: "",
         msg: [
           {id: 1, pic: "/static/images/home-page/subject01.png", name: "英语", path: "/subject/1"},
           {id: 2, pic: "/static/images/home-page/subject02.png", name: "数学", path: "/subject/2"},
@@ -43,14 +40,7 @@
     },
     methods: {
       goBack: function () {
-        router.push("/");
-      },
-      search: function () {
-        if (this.keyword) {
-          router.push("/contents-list/courses-list?keyword=" + this.keyword);
-        } else {
-          console.log("no keyword");
-        }
+        router.go(-1);
       }
     },
   }

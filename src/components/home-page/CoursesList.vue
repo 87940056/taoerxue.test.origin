@@ -2,14 +2,14 @@
   <ul class="courses-list">
     <li class="item" v-for="item in msg">
       <div class="part-one clearfix">
-        <img v-lazy="item.pic" alt="" class="pic">
+        <img v-lazy="item.photo" alt="" class="pic">
         <ul class="pic-right">
           <li class="name">{{item.name}}</li>
-          <li class="describe">{{item.describe}}</li>
+          <li class="describe">{{item.characteristic}}</li>
           <li class="others">
-            <div class="subject-name">{{item.subject}}</div>
+            <div class="subject-name">{{item.typeName}}</div>
             <span>共</span>
-            <span>{{item.class_hour}}</span>
+            <span>{{item.classTotal}}</span>
             <span>节课</span>
           </li>
         </ul>
@@ -23,7 +23,7 @@
           <div class="division">
             <div></div>
           </div>
-          <img :src="t.pic" alt="" class="pic">
+          <img :src="t.photo" alt="" class="pic">
           <!--<div class="icon"></div>-->
           <span class="name">{{t.name}}</span>
           <!--<div class="score">-->
@@ -32,7 +32,7 @@
           <!--</div>-->
         </div>
         <div class="students-num">
-          <span>{{item.students_num}}</span>
+          <span>{{item.collections}}</span>
           <span>人学过</span>
         </div>
       </div>

@@ -48,7 +48,7 @@
         active_play: false,
         msg: "",
         msg_view: "",
-        active: 1,
+        active: "",
         content_nav: [
           {id: 1, name: "详情", route_name: "CourseContentDetailsUL"},
           {id: 2, name: "课程计划", route_name: "CourseCatalogUL"},
@@ -94,6 +94,10 @@
           this.msg_view = this.msg.courses_recommend;
         }
       },
+      // 长字段处理
+      cutOff: function (fn_str, fn_num) {
+        return fn_str.length > fn_num ? fn_str.slice(0, fn_num) + "..." : fn_str;
+      },
       getData: function () {
         $.ajax({
           type: "post",
@@ -109,7 +113,7 @@
           error: function () {
             var data = {
               code: 0,
-              msg: {
+              data: {
                 id: 111,
                 with_me: {
                   status_own: true,
@@ -121,8 +125,8 @@
                   class_hour: 12,
                   play_count: 111,
                   price: "1.25",
-                  openingTime:"2017年11月15日",
-                  classPlace:"杭州市去哪里路111号",
+                  openingTime: "2017年11月15日",
+                  classPlace: "杭州市去哪里路111号",
                   teacher: {
                     id: 122,
                     pic: "/static/images/home-page/pic.png",
@@ -177,79 +181,64 @@
                 courses_recommend: [
                   {
                     id: 1,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课01",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   },
                   {
-                    id: 2,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    id: 1,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课02",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   },
                   {
-                    id: 3,
-                    name: "棒棒的音乐课",
-                    pic: "/static/images/home-page/course.jpg",
-                    subject: "音乐",
-                    class_hour: 3,
+                    id: 1,
+                    name: "棒棒的音乐课棒棒的音乐课棒棒的音乐课03",
+                    photo: "/static/images/home-page/course.jpg",
+                    typeName: "音乐",
+                    classTotal: 3,
                     price: "360.00",
-                    describe: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
+                    characteristic: "很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒的音乐课",
                     score: "5.0",
-                    students_num: 123,
+                    collections: 123,
                     teacher: [
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      },
-                      {
-                        name: "王小剑",
-                        pic: "/static/images/home-page/pic.png"
-                      }
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"},
+                      {id: 122, name: "王小剑", photo: "/static/images/home-page/pic.png"}
                     ]
                   }
                 ]
               }
             };
             if (data.code === 0) {
-              this.msg = data.msg;
+              data.data.courses_recommend.forEach((item) => {
+                item.name = this.cutOff(item.name, 12);
+                item.characteristic = this.cutOff(item.characteristic, 34);
+              });
+              this.msg = data.data;
+              this.content_nav.forEach(function (item) {
+                if (this.$route.name === item.route_name) {
+                  this.active = item.id;
+                }
+              }.bind(this));
               this.msg_head.status_collect = this.msg.with_me.status_collect;
-              this.setView(this.active);
-            } else {
-              this.active_noResult = true;
-              setTimeout(function () {
-                this.active_noResult = false;
-              }.bind(this), 3000)
             }
           }.bind(this)
         });
@@ -258,7 +247,7 @@
     watch: {
       $route: function () {
         this.content_nav.forEach(function (item) {
-          if (item.route_name == this.$route.name) {
+          if (item.route_name === this.$route.name) {
             this.active = item.id;
           }
         }.bind(this));
@@ -268,11 +257,6 @@
       }
     },
     created: function () {
-      this.content_nav.forEach(function (item) {
-        if (this.$route.name === item.route_name) {
-          this.active = item.id;
-        }
-      }.bind(this));
       this.getData();
     }
   }
