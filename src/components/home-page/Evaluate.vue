@@ -13,17 +13,22 @@
     </div>
     <ul class="contents">
       <li class="item clearfix" v-for="item in msg.msg_remark">
-        <router-link class="pic" to="/user-data">
-          <img v-lazy="item.pic" alt="">
+        <router-link class="pic" to="">
+          <img :src="item.pic" alt="">
         </router-link>
-        <div class="eva-data">
-          <p class="name">{{item.name}}</p>
-          <p class="eva-content">{{item.eva_content}}</p>
+        <div class="pic-right">
+          <div class="name-time clearfix">
+            <span class="user-name">{{item.name}}</span>
+            <span class="time">5天前</span>
+          </div>
+          <p class="text-content">{{item.eva_content}}</p>
         </div>
-        <span class="time">{{item.time}}</span>
-        <span class="date">{{item.date}}</span>
       </li>
     </ul>
+    <div class="more" @click="more(1)">
+      <span>查看更多评论</span>
+      <div class="icon"></div>
+    </div>
   </div>
 </template>
 

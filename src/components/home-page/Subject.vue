@@ -165,10 +165,10 @@
                 }
               ]
             };
-            if (!this.msg) {
-              this.msg = [];
-            }
             if (data.code === 0) {
+              if (!this.msg) {
+                this.msg = [];
+              }
               data.data.forEach((item) => {
                 item.name = this.cutOff(item.name, 12);
                 item.characteristic = this.cutOff(item.characteristic, 34);

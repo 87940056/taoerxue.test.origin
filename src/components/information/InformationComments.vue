@@ -54,7 +54,7 @@
           </li>
         </ul>
         <div class="more" @click="more(2)">
-          <span>查看更多最新评论</span>
+          <span>查看更多评论</span>
           <div class="icon"></div>
         </div>
       </li>

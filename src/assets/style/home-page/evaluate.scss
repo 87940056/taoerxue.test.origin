@@ -44,49 +44,68 @@ $img: "/static/images/home-page/";
 
 .evaluate .contents {
   width: 100%;
-  padding-left: 0.28rem;
-  padding-right: 0.1rem;
   li.item {
     width: 100%;
-    padding: 0.15rem 0.3rem 0.15rem 0;
+    padding: 0.2rem 0 0.2rem 0.3rem;
     border-bottom: 1px solid #e5e5e5;
     a.pic {
-      display: block;
       float: left;
+      display: block;
       width: 0.8rem;
       height: 0.8rem;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
     }
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: 0.1rem;
-    }
-    .eva-data {
+    .pic-right {
       float: left;
+      width: 5.8rem;
       margin-left: 0.12rem;
-      padding-top: 0.1rem;
-      p.name {
+    }
+    .pic-right .name-time {
+      width: 100%;
+      span {
         font-size: 0.28rem;
-        color: #1d1d1d;
+        color: #333434;
         line-height: 0.28rem;
       }
-      p.eva-content {
-        margin-top: 0.08rem;
-        font-size: 0.24rem;
-        color: #9b9b9b;
-        line-height: 0.24rem;
+      span.user-name {
+        float: left;
+      }
+      span.time {
+        float: right;
       }
     }
-    span.time, span.date {
-      float: right;
-      margin-top: 0.1rem;
-      font-size: 0.22rem;
-      color: #9b9b9b;
-    }
-    span.date {
-      margin-right: 0.15rem;
+    .pic-right p.text-content {
+      width: 100%;
+      padding-right: 0.4rem;
+      margin-top: 0.2rem;
+      font-size: 0.24rem;
+      color: #333434;
+      line-height: 0.3rem;
     }
   }
+}
 
+.evaluate .more {
+  width: 100%;
+  height: 0.7rem;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    display: block;
+    font-size: 0.3rem;
+    color: #1d1d1d;
+    line-height: 0.3rem;
+  }
+  .icon {
+    margin-left: 0.15rem;
+    width: 0.24rem;
+    height: 0.24rem;
+    background: url($img + "more.png") no-repeat center/100%;
+  }
 }
