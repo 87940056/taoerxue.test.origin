@@ -31,7 +31,7 @@
       return {
         title: "",
         keyword: "",
-        msg_subjects: ["英语", "数学", "语文", "体育", "美术", "舞蹈", "音乐", "国学", "益智"],
+        msg_subjects: ["英语", "数学", "语文", "体育", "美术", "舞蹈", "音乐", "国学", "益智", "拓展"],
         msg: "",
         status_noResult: false,
         withScroll: {

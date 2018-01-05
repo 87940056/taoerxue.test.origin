@@ -11,6 +11,7 @@ import ShoppingCart from '@/components/func-components/ShoppingCart'
 import Payment from '@/components/func-components/Payment'
 import DataSet from '@/components/func-components/DataSet'
 import Commenting from '@/components/func-components/Commenting'
+import CommentsList from '@/components/func-components/CommentsList'
 
 //home-page
 import Location from '@/components/home-page/Location'
@@ -37,7 +38,7 @@ import DownLoadManagement from '@/components/home-page/DownLoadManagement'
 
 //information
 import InformationDetails from '@/components/information/InformationDetails'
-import InformationComments from '@/components/information/InformationComments'
+import InformationList from '@/components/information/InformationList'
 
 //shopping-mail
 import GoodsDetails from '@/components/shopping-mail/GoodsDetails'
@@ -303,14 +304,14 @@ export default new Router({
       component: Information
     },
     {
+      path: '/information-list',
+      name: 'InformationList',
+      component: InformationList
+    },
+    {
       path: '/information-details',
       name: 'InformationDetails',
       component: InformationDetails
-    },
-    {
-      path: '/information-comments',
-      name: 'InformationComments',
-      component: InformationComments
     },
     //shoppingMail--------------------------------------------------------------------
     {
@@ -470,6 +471,11 @@ export default new Router({
       path: '/commenting',
       name: 'Commenting',
       component: Commenting
+    },
+    {
+      path: '/comments-list',
+      name: 'CommentsList',
+      component: CommentsList
     },
   ]
 })

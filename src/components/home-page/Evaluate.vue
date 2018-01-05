@@ -25,9 +25,10 @@
         </div>
       </li>
     </ul>
-    <div class="more" @click="more(1)">
+    <div class="more">
       <span>查看更多评论</span>
       <div class="icon"></div>
+      <router-link to="/comments-list" class="mask"></router-link>
     </div>
   </div>
 </template>

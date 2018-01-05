@@ -34,7 +34,8 @@
           {id: 6, pic: "/static/images/home-page/subject06.png", name: "舞蹈", path: "/subject/6"},
           {id: 7, pic: "/static/images/home-page/subject07.png", name: "音乐", path: "/subject/7"},
           {id: 8, pic: "/static/images/home-page/subject08.png", name: "国学", path: "/subject/8"},
-          {id: 9, pic: "/static/images/home-page/subject10.png", name: "益智", path: "/subject/9"}
+          {id: 9, pic: "/static/images/home-page/subject09.png", name: "益智", path: "/subject/9"},
+          {id: 9, pic: "/static/images/home-page/subject10.png", name: "拓展", path: "/subject/10"}
         ]
       }
     },

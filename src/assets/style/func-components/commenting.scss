@@ -50,7 +50,7 @@ $img: "/static/images/others/";
   color: #9b9b9b;
   line-height: 0.38rem;
 }
-.commenting .hint{
+.commenting .hint-input{
   width: 100%;
   margin-top: -0.68rem;
   padding-right: 0.4rem;
@@ -58,6 +58,14 @@ $img: "/static/images/others/";
   color: #9b9b9b;
   line-height: 0.28rem;
   text-align: right;
+}
+
+.commenting .hint{
+  margin-top: 0.8rem;
+  font-size: 0.34rem;
+  line-height: 0.34rem;
+  color: #666;
+  text-align: center;
 }
 
 .commenting .submission{

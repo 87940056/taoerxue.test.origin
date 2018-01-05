@@ -1,15 +1,21 @@
-$img: "/static/images/information/";
+$img: "/static/images/others/";
 
-.information-comments {
+.comments-list {
   width: 100%;
+  padding-top: 0.97rem;
   background-color: #fff;
 }
 
-.information-comments header {
+.comments-list header {
   width: 100%;
   height: 0.97rem;
   padding: 0.2rem 0.4rem;
-  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   .return {
     float: left;
     width: 0.25rem;
@@ -39,13 +45,12 @@ $img: "/static/images/information/";
   }
 }
 
-.information-comments .contents {
+.comments-list .contents {
   width: 100%;
 }
 
-.information-comments li.content {
+.comments-list li.content {
   width: 100%;
-  margin-bottom: 0.3rem;
   p.title-text {
     padding-left: 0.34rem;
     border-left: 0.2rem solid #f5b91d;
@@ -54,10 +59,10 @@ $img: "/static/images/information/";
     color: #9b9b9b;
     line-height: 0.5rem;
   }
-  .comments {
+  ul.items {
     width: 100%;
   }
-  .comments li.item {
+  ul.items li.item {
     width: 100%;
     padding: 0.3rem 0 0.3rem 0.3rem;
     border-bottom: 1px solid #e5e5e5;
@@ -122,7 +127,7 @@ $img: "/static/images/information/";
   .more {
     width: 100%;
     height: 0.7rem;
-    background-color: #f9f9f9;
+    //background-color: #f9f9f9;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,13 +146,79 @@ $img: "/static/images/information/";
   }
 }
 
-.information-comments .comment-now-box {
+.comments-list ul.contents_{
+  width: 100%;
+  li.item {
+    width: 100%;
+    padding: 0.3rem 0 0.3rem 0.3rem;
+    border-bottom: 1px solid #e5e5e5;
+    a.pic {
+      float: left;
+      display: block;
+      width: 0.8rem;
+      height: 0.8rem;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .pic-right {
+      float: left;
+      width: 5.8rem;
+      margin-left: 0.12rem;
+    }
+    .pic-right p.user-name {
+      font-size: 0.28rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    .pic-right p.text-content {
+      width: 100%;
+      height: 0.54rem;
+      margin-top: 0.08rem;
+      font-size: 0.24rem;
+      color: #333434;
+      line-height: 0.28rem;
+    }
+    .pic-right .time-thumb {
+      margin-top: 0.15rem;
+      .time {
+        float: left;
+        font-size: 0.22rem;
+        color: #9b9b9b;
+        line-height: 0.44rem;
+      }
+      .thumb {
+        float: right;
+      }
+      .thumb .icon {
+        float: left;
+        width: 0.4rem;
+        height: 0.44rem;
+        background: url($img + "thumb.png") no-repeat center/100%;
+      }
+      .thumb .icon.active {
+        background: url($img + "thumb_active.png") no-repeat center/100%;
+      }
+      .thumb span {
+        float: left;
+        margin-left: 0.2rem;
+        font-size: 0.22rem;
+        color: #9b9b9b;
+        line-height: 0.44rem;
+      }
+    }
+  }
+}
+
+.comments-list .comment-now-box {
   width: 100%;
   padding: 0.2rem 0;
   background-color: #eee;
 }
 
-.information-comments .comment-now {
+.comments-list .comment-now {
   width: 6.38rem;
   height: 0.6rem;
   margin: 0 auto;

@@ -1,16 +1,11 @@
 <template>
-  <div class="information">
+  <div class="information-list">
     <header>
-      <ul class="header-content">
-        <li class="item" v-for="(item,index) in msg_nav" :class="{'active':active==index+1}"
-            @click="setActive(index+1)">
-          <p class="name">{{item.name}}</p>
-          <div></div>
-        </li>
-      </ul>
+      <div class="return" @click="goBack()"></div>
+      <p>{{title}}</p>
     </header>
-    <ul class="contents" v-if="msg_view">
-      <li class="item clearfix" v-for="item in msg_view">
+    <ul class="contents" v-if="msg">
+      <li class="item clearfix" v-for="item in msg">
         <img v-lazy="item.photo" alt="" class="pic">
         <div class="pic-right">
           <p class="name">{{item.title}}</p>
@@ -30,31 +25,22 @@
           </ul>
         </div>
         <router-link :to="`/information-details?id=${item.id}`"></router-link>
-        <!--<router-link :to="'/information-details?active='+active+'&id='+item.id"></router-link>-->
       </li>
     </ul>
     <p class="hint-noMore" v-if="status_noMore">没有更多</p>
-    <TabBar></TabBar>
   </div>
 </template>
 
 <script>
   import router from "@/router/index"
-  import "../../assets/style/information/information.scss";
-  import TabBar from "@/components/func-components/TabBar";
+  import "../../assets/style/information/information-list.scss";
   export default {
-    name: 'Information',
-    components: {
-      TabBar
-    },
     data () {
       return {
-        active: "",
-        msg_nav: "",
+        title: "",
         pageNum: 1,
         pageSize: 8,
         msg: "",
-        msg_view: "",
         withScroll: {
           viewHeight: 0,
           height: 0,
@@ -66,38 +52,11 @@
       }
     },
     methods: {
-      setActive: function (id) {
-        this.active = id;
-      },
-      getNav: function () {
-        $.ajax({
-          type: "post",
-          url: "/news/typeList",
-          headers: {
-            Authorization: sessionStorage.token || ""
-          },
-          data: {},
-          dataType: "json",
-          success: function (data) {
-
-          },
-          error: function () {
-            var data = {
-              code: 0,
-              data: [
-                {id: 1, name: "推荐资讯"},
-                {id: 5, name: "经验分享"},
-                {id: 8, name: "育儿教育"},
-                {id: 9, name: "教育热点"},
-                {id: 12, name: "最新实事"}
-              ]
-            };
-            this.msg_nav = data.data;
-          }.bind(this)
-        })
+      goBack: function () {
+        router.go(-1);
       },
       getData: function (fn_type) {
-        this.pageNum = fn_type === 1 ? 1 : this.msg.length / this.pageSize + 1;
+        this.pageNum = this.msg.length / this.pageSize + 1;
         $.ajax({
           type: "post",
           url: "/news/list",
@@ -105,7 +64,7 @@
             Authorization: sessionStorage.token || ""
           },
           data: {
-            typeId: this.active,
+            keyWord: this.title,
             pageNum: this.pageNum,
             pageSize: this.pageSize
           },
@@ -203,19 +162,11 @@
               if (data.data.length < this.pageSize) {
                 this.status_noMore = true;
               }
-              if (fn_type === 1) {
-                this.returnTop();
-                this.msg_view = data.data;
+              if (!this.msg) {
+                this.msg = [];
               }
-              if (fn_type === 2) {
-                this.msg_view = this.msg_view.concat(data.data);
-                this.status_reload = true;
-              }
-            } else {
-              if (fn_type === 2) {
-                this.msg_view = this.msg_view.concat(data.data);
-                this.status_reload = true;
-              }
+              this.msg = this.msg.concat(data.data);
+              this.status_reload = true;
             }
           }.bind(this)
         })
@@ -227,17 +178,9 @@
         if (this.reloadLine < 0 && !this.status_noMore) {
           if (this.status_reload) {
             this.status_reload = false;
-            this.getData(2);
+            this.getData();
           }
         }
-      }
-    },
-    watch: {
-      active: function () {
-        router.push("/information?active=" + this.active);
-      },
-      $route: function () {
-        this.getData(1);
       }
     },
     computed: {
@@ -246,13 +189,8 @@
       }
     },
     created: function () {
-      if (this.$route.query.active) {
-        this.active = this.$route.query.active;
-      } else {
-        this.active = 1;
-      }
-      this.getNav();
-      this.getData(1);
+      this.title = this.$route.query.keyword;
+      this.getData();
     },
     mounted: function () {
       $(window).scroll(this.scroll);
